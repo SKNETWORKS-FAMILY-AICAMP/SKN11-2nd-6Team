@@ -13,7 +13,16 @@
 |------|------|------|------|------|
 | <img src="https://github.com/user-attachments/assets/2dc83746-b3a4-45a8-96d3-36a458222cc1" width="200"/> | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/9c95cb5d-a8e2-4716-a7a4-7278aee484d1" width="200"/> | <img src="https://github.com/user-attachments/assets/df0d3172-e97e-4909-8c53-dbb5ee137713" width="200"/> | <img src="https://github.com/user-attachments/assets/27d29763-0f6a-4b17-8151-e5654c407e7d" width="200"/> |
 
-## 2️⃣ 전처리
+## 🔧 기술 스택
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white" style="display: inline-block; margin: 5px;">
+  <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" style="display: inline-block; margin: 5px;">
+  <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=NumPy&logoColor=white" style="display: inline-block; margin: 5px;">
+</p>
+
+
+## 2️⃣ 데이터 셋
 # Merging Dataframes
 
 이 프로젝트에서는 여러 데이터 파일을 병합하여 학생들의 학습 활동과 관련된 다양한 분석을 수행합니다. 각 데이터 파일은 다음과 같은 정보를 포함하고 있습니다:
@@ -35,13 +44,19 @@
 
 이 데이터들은 다양한 분석을 위해 병합될 예정이며, 이를 통해 학생들의 성적, 학습 활동, 평가 등 다양한 측면에서 통찰을 얻을 수 있습니다.
 
-
-
-
-
-
-
-
-
-
 ![image](https://github.com/user-attachments/assets/2cfa138d-a3aa-44d0-86ed-743312566af0)
+
+---
+### 데이터 병합 과정
+![image](https://github.com/user-attachments/assets/30c486af-4ccf-4940-9960-68d6e28fa84f)
+- 각각 사진 병합 
+
+![image](https://github.com/user-attachments/assets/4628b792-cfee-41a1-8ace-aa20a437b605)
+- 한번에 사진 병합
+
+## 3️⃣ 전처리(Data Preprocessing)
+
+
+
+
+
