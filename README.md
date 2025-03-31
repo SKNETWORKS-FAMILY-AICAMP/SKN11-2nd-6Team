@@ -4,14 +4,48 @@
 - **SK 네트웍스 Family AI 캠프 11기**
 
 - **팀명:** **6조**
-
-- **기간:** **2025년 3월 31일** ~ **2025년 4월 1일**
-
 ---
 
 |[@백미송](https://github.com/misong-hub)|[@김성지](https://github.com/kimseoungji0801)|[@이채은](https://github.com/chaeeunlee05)|[@이혜성](https://github.com/comet39)|[@홍성욱](https://github.com/Sung-WookHong)|
 |------|------|------|------|------|
 | <img src="https://github.com/user-attachments/assets/2dc83746-b3a4-45a8-96d3-36a458222cc1" width="200"/> | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/9c95cb5d-a8e2-4716-a7a4-7278aee484d1" width="200"/> | <img src="https://github.com/user-attachments/assets/df0d3172-e97e-4909-8c53-dbb5ee137713" width="200"/> | <img src="https://github.com/user-attachments/assets/27d29763-0f6a-4b17-8151-e5654c407e7d" width="200"/> |
+
+# 프로젝트 주제 :
+
+# 📅 개발 기간
+**2025년 3월 31일** ~ **2025년 4월 1일**
+
+## 🎯 프로젝트 개요
+
+### 프로젝트 목표
+- 
+
+### ***:
+
+ **1. **
+- **
+- **
+
+ **2. **
+- 
+
+ **3. **
+- 
+- 
+
+### **접근 방식**:
+
+   
+### **타겟 변수**: **`수강취소여부`** ('Yes': 수강취소 o , 'No': 수강취소 x)
+
+## 📂데이터 구성 
+`assessments.csv` : 
+`courses.csv`:
+`studentInfo.csv`
+`studentRegistration.csv`
+`studentAssessment.csv`
+
+### - 데이터소스
 
 ## 🔧 기술 스택
 
