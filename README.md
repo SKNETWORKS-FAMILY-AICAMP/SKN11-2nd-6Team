@@ -10,6 +10,46 @@
 |------|------|------|------|------|
 | <img src="https://github.com/user-attachments/assets/2dc83746-b3a4-45a8-96d3-36a458222cc1" width="200"/> | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/9c95cb5d-a8e2-4716-a7a4-7278aee484d1" width="200"/> | <img src="https://github.com/user-attachments/assets/df0d3172-e97e-4909-8c53-dbb5ee137713" width="200"/> | <img src="https://github.com/user-attachments/assets/27d29763-0f6a-4b17-8151-e5654c407e7d" width="200"/> |
 
+# 목차 
+
+## 1. 🔍 프로젝트 개요
+## 2. 🧹 데이터 전처리
+## 3. 📊 탐색적 데이터 분석 (EDA)
+## 4. ⚙️ 모델링
+### 4.1 베이스라인 모델
+- RandomForestClassifier
+- VotingClassifier (Logistic + DecisionTree + XGBoost)
+
+### 4.2 클래스 불균형 처리
+- 언더샘플링 (Downsampling)
+- 오버샘플링 (SMOTE)
+
+### 4.3 파이프라인 구성
+- StandardScaler 적용 (정규화)
+- Pipeline + 모델 조합
+
+## 5. 🎯 하이퍼파라미터 튜닝
+- `GridSearchCV` (f1-score 기준)
+  - XGBClassifier, DecisionTreeClassifier
+- `RandomizedSearchCV` (넓은 범위 탐색)
+- 최적 파라미터 기반 재학습
+
+## 6. 📈 모델 평가 (최종)
+- 학습 정확도 / 테스트 정확도
+- classification_report: Precision / Recall / F1-score
+- 오버피팅 여부 확인
+- Feature Importance 시각화
+
+## 7. 💡 인사이트 및 결론
+- 이탈자의 주요 특성 요약
+- 가장 영향력 있는 변수 분석 (예: 점수 편차↑, 제출률↓, 지각률↑)
+- 이탈 위험군 조기 예측 가능성
+- 실무 적용 시나리오 제안
+- 
+## 8. 한줄 회고
+
+
+
 # 프로젝트 주제 :
 
 # 📅 개발 기간
@@ -39,11 +79,11 @@
 ### **타겟 변수**: **`수강취소여부`** ('Yes': 수강취소 o , 'No': 수강취소 x)
 
 ## 📂데이터 구성 
-`assessments.csv` : 
-`courses.csv`:
-`studentInfo.csv`
-`studentRegistration.csv`
-`studentAssessment.csv`
+`assessments.csv` : <br/> 
+`courses.csv`: <br/>
+`studentInfo.csv` : <br/>
+`studentRegistration.csv`: <br/>
+`studentAssessment.csv`: <br/>
 
 ### - 데이터소스
 
