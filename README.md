@@ -108,4 +108,9 @@
 
 따라서, **`date_unregistration`** 값이 존재하는 학생은 `final_result` 값이 **`Fail`** 이 아니도록 예외 처리가 이루어집니다.
 
-
+### 2.인코딩
+ ![image](https://github.com/user-attachments/assets/bdd3bec7-c29f-49b2-a7d5-a0108f37bbef)
+ 
+ ### 불필요한 특성 제거
+    - 분석에 불필요하거나 중복되는 정보를 가진 열 제거
+ ![image](https://github.com/user-attachments/assets/6bfea0d2-d3ab-43d1-ae69-88ef89b54229)
