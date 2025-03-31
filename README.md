@@ -145,24 +145,5 @@
 - my_max/min_score/my_score_std : 특정 과목 강점/약점 식별 및 극단적 편차 분석
 - my_score_trend	: 학습 효과성 평가 (지속적 상승=효율적 학습법, 하락=개입 필요)
 - weighted_score :	난이도 대비 성취도 → "B과제는 고난이도지만 고가중점수 → Distinct 학생" 
-![image](https://github.com/user-attachments/assets/832ced68-6613-4d84-a1f0-be2de8745883)
-
-#### 코스 관련 특성
-  - 코스별 평균 점수, 최고 점수, 최저 점수, 점수의 표준편차 -> 최저 점수 다 0임, 최고점이 필요한가?, 중간값이 필요한가?
-  - 코스별 과제 개수
-
-##### 'course_avg_score', 'course_std_score', 'assignment_count'
-
-- course_avg_score, course_std_score :	평가 방식 적정성 → 편차↑=과도한 변별력 / 강좌 난이도 레벨링
-- assignment_count :	과제량-성적 상관관계 분석 → 최적 과제량 도출
-![image](https://github.com/user-attachments/assets/a4ff2c22-fb04-42aa-b6a9-95ffa96c0d95)
-
-##### 코스별 지각 제출 비율
-![image](https://github.com/user-attachments/assets/41aa4ff8-0aad-485d-bae9-8e7cd983ec87)
-![image](https://github.com/user-attachments/assets/eebfb32f-f52b-42c3-adbf-85de664f4573)
-
-
-
-
 
 
