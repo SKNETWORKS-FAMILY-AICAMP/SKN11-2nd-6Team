@@ -14,7 +14,9 @@
 
 ## 1. 🔍 프로젝트 개요
 ## 2. 🧹 데이터 전처리
+   Feature Importance 시각화 추가하기
 ## 3. 📊 탐색적 데이터 분석 (EDA)
+- StandardScaler 적용 (정규화) 추가하기
 ## 4. ⚙️ 모델링
 ### 4.1 베이스라인 모델
 - RandomForestClassifier
@@ -25,7 +27,6 @@
 - 오버샘플링 (SMOTE)
 
 ### 4.3 파이프라인 구성
-- StandardScaler 적용 (정규화)
 - Pipeline + 모델 조합
 
 ## 5. 🎯 하이퍼파라미터 튜닝
@@ -38,7 +39,7 @@
 - 학습 정확도 / 테스트 정확도
 - classification_report: Precision / Recall / F1-score
 - 오버피팅 여부 확인
-- Feature Importance 시각화
+
 
 ## 7. 💡 인사이트 및 결론
 - 이탈자의 주요 특성 요약
