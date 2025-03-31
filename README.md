@@ -1,4 +1,4 @@
-# 온라인 학습 플랫폼 회원 이탈 예측
+# 프로젝트명 : 대학교 수강 이탈 예측 모델링
 
 ## 1️⃣ 팀원 소개
 - **SK 네트웍스 Family AI 캠프 11기**
@@ -13,22 +13,308 @@
 # 목차 
 
 ## 1. 🔍 프로젝트 개요
-## 2. 🧹 데이터 전처리
+
+# 📅 개발 기간
+**2025년 3월 31일** ~ **2025년 4월 1일**
+
+
+## 📌 프로젝트 목표
+- 대학교 수강생들의 이탈(수강 취소) 여부를 조기 예측하여 학습 지원 및 개입 방안 마련<br/>
+- 학생들의 과제 제출 패턴 및 성적 특성을 분석하여 이탈 징후를 파악<br/>
+- 머신러닝 모델을 통해 이탈 위험군을 사전에 식별하고 예측 성능을 극대화<br/>
+
+## 🌟 기대 효과
+- 이탈 가능성 높은 학생을 조기에 파악함으로써 맞춤형 학습 지원 제공 가능<br/>
+- 교육 기관의 학업 성공률 및 수료율 향상<br/>
+- *과제 기반 행동 데이터만으로도 충분한 예측 성능을 확보함으로써 효율적인 데이터 수집 및 분석 체계 구축 가능*<br/>
+
+## 🛠️ **접근 방식**
+- Open University의 실제 데이터셋(OULAD) 활용
+- 과제 제출율, 과제 점수 분위수, 평균 성적 Z-점수 등을 주요 피처로 활용
+- 수강생의 이탈 여부(Withdrawn) 를 타겟 변수로 설정
+- 데이터 전처리 및 피처 엔지니어링을 통해 날짜 정보, 제출 시기, 등록 시기 등을 범주화하여 반영
+- Logistic Regression, Random Forest 등의 분류 모델을 적용
+-최종적으로 모델 성능을 평가하고 이탈 예측에 가장 영향력 있는 변수 분석
+
+   
+## 🎯 **타겟 변수**: **`수강취소여부`** 
+- Yes → 수강을 취소한 학생 (이탈)
+- No → 수강을 완료한 학생 (비이탈)
+
+
+## 🔧 기술 스택
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white" style="display: inline-block; margin: 5px;">
+  <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" style="display: inline-block; margin: 5px;">
+  <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=NumPy&logoColor=white" style="display: inline-block; margin: 5px;">
+</p>
+
+## 📂 데이터셋
+[Open University Learning Analytics Dataset (OULAD)](https://analyse.kmi.open.ac.uk/#open-dataset) <br/>
+오픈 유니버시티(Open University)에서 공개한 영국 Open University 학생들의 **온라인 학습 행동 및 이탈 관련 데이터셋**.<br/>
+학습자의 활동, 평가 성적, 이탈 여부 등 **교육 분석(learning analytics)** 연구에 유용하게 쓰이는 대표적인 공개 데이터
+
+### 데이터 구성 (5개의 CSV 파일)
+
+1. `assessments.csv` : 각 강의의 과제(평가) 관련 정보 <br/>
+2. `studentAssessment.csv`: 학생들의 과제 제출 및 성적 정보 <br/>
+3. `courses.csv`: 개설된 각 강의(course)에 대한 정보 <br/>
+4. `studentInfo.csv` : 각 학생의 인구통계학적 정보와 수강 결과 <br/>
+5. `studentRegistration.csv`: 학생들의 수강 신청 및 이탈(취소) 정보 <br/>
+
+## 2. 🧹 데이터 전처리(Data Preprocessing)
    Feature Importance 시각화 추가하기
+
+
+### 1. 결측치 처리
+
+### `date`
+
+- 대부분 `assessment_type = "Exam"`에 해당
+- 시험은 일반적으로 강의 종료일에 시행됨
+→ `module_presentation_length`를 활용해 **강의 마지막 날짜로 채움**
+
+
+### 🔹 결측치 제거
+### `score`
+
+- 총 173건 결측
+    - `Withdrawn`(이탈자): 72개
+    - `Pass`, `Fail`, `Distinction`(수료자): 101개
+- 과제를 제출했는데도 점수가 없는 경우로 추정… 수가 적으므로 **삭제 처리**
+
+### `imd_band`
+
+- 총 7697건 결측
+- 전체 28,785명 중 약 **971명**의 `imd_band`(지역 기반 사회경제 수준 지표)가 없음
+- 'imd_band' 컬럼에서 결측치가 있는 행을 삭제
+
+
+### `date_unregistration`
+
+- 결측치 160,857건
+- 해당 컬럼은 **"언제 수강을 중도 이탈했는가"**를 의미
+- - 수강 등록일이 없는 7건 → **삭제**
+→ **결측 = 중도 이탈하지 않은 수료자**
+→ 즉, 의미 있는 결측이므로 **삭제하지 않음** → 인코딩 과정에서 결측치를 처리 한다!!!
+
+### `final_result 이상치 처리 코드`
+
+<img src="https://github.com/user-attachments/assets/82e61b3a-c481-4d34-8b4d-d228749b24b0" style="display: inline; margin-right: 10px;">
+
+
+- **`date_unregistration`**: 이 필드는 학생이 온라인 학습을 이탈한 날짜를 나타냅니다. 학생이 학습을 중단하거나 수업을 탈퇴한 시점을 추적할 수 있습니다.
+
+- **`final_result`**: 이 필드는 학생의 최종 성적 결과를 나타냅니다. 다만, **`date_unregistration`**이 존재하는 경우(즉, 학생이 온라인 학습을 이탈한 경우), 해당 학생은 **`Fail`** 상태로 결과가 나오지 않도록 처리되었습니다. 이유는 학습 이탈이 성적에 영향을 미치므로, 이탈 학생에게는 `Fail` 값을 부여할 수 없기 때문입니다.
+
+### 처리 방식
+
+- **학습 이탈**: `date_unregistration` 값이 존재하는 학생은 학습을 중단한 것으로 간주되며, 이들은 더 이상 학습을 지속하지 않으므로 **`Fail`** 상태로 처리될 수 없습니다.
+  
+- **이탈 학생 제외**: `final_result` 값이 `Fail`로 설정될 수 없는 이유는, `date_unregistration`에 의해 이미 이탈한 학생은 성적이 `Fail`로 기록되지 않기 때문입니다.
+
+따라서, **`date_unregistration`** 값이 존재하는 학생은 `final_result` 값이 **`Fail`** 이 아니도록 예외 처리가 이루어집니다.
+
+
+
+### 2.인코딩
+![image](https://github.com/user-attachments/assets/bdd3bec7-c29f-49b2-a7d5-a0108f37bbef)
+
+### 불필요한 특성 제거
+   - 분석에 불필요하거나 중복되는 정보를 가진 열 제거
+![image](https://github.com/user-attachments/assets/6bfea0d2-d3ab-43d1-ae69-88ef89b54229)
+
+
+### 특성 엔지니어링
+#### 학생의 성적 관련 특성
+  - 각 학생의 평균 점수, 최고 점수, 최저 점수, 점수의 표준편차
+    - 각 학생당 코스별 성적 편차 필요할까?
+  - 점수 추세 (상승 또는 하락)
+  - 과제 난이도에 따른 가중 점수 -> 난이도 기준을 뭘로 잡아야하나?
+ 
+##### my_average_score, my_max_score, my_min_score, my_score_std, my_score_trend, assesment_weight, weighted_score
+
+- my_avg_score : 개인 학업 성취도 수준 파악
+- my_max/min_score/my_score_std : 특정 과목 강점/약점 식별 및 극단적 편차 분석
+- my_score_trend	: 학습 효과성 평가 (지속적 상승=효율적 학습법, 하락=개입 필요)
+- weighted_score :	난이도 대비 성취도 → "B과제는 고난이도지만 고가중점수 → Distinct 학생" 
+
+
+
 ## 3. 📊 탐색적 데이터 분석 (EDA)
 - StandardScaler 적용 (정규화) 추가하기
-## 4. ⚙️ 모델링
-### 4.1 베이스라인 모델
-- RandomForestClassifier
-- VotingClassifier (Logistic + DecisionTree + XGBoost)
+# 4. 모델링
 
-### 4.2 클래스 불균형 처리
-- 언더샘플링 (Downsampling)
-- 오버샘플링 (SMOTE)
+### ⚠️**클래스 불균형 문제**
+![image](https://github.com/user-attachments/assets/88a00bb3-78b2-4786-8298-b86bcd0f02d2)
+```python
+voting_clf.fit(X_train_scaled, y_train)
+y_pred = voting_clf.predict(X_test_scaled)
+```
+![image](https://github.com/user-attachments/assets/96bfc0b6-2686-4d2b-bf50-06ded91dba83)
+- **클래스 0 (비이탈자)** 는 잘 맞추고 있음 (recall=1.00).
+- **클래스 1 (이탈자)** 는 recall이 0.28, 즉 이탈자를 정확히 잡아내지 못하고 있음.
+- 전반적으로 **정확도 95%** 는 높지만, 이는 다수 클래스인 0에 의존한 착시.
 
-### 4.3 파이프라인 구성
-- Pipeline + 모델 조합
+## ⬆️ 오버샘플링
+### ⚙️ 전처리 요약
+- 클래스 불균형 처리: SMOTE를 통해 **이탈자 수(1)** 를 오버샘플링하여 균형 잡힌 학습 데이터셋 구성
+- 정규화: StandardScaler를 이용해 모든 특성값을 표준 정규분포(평균=0, 표준편차=1)로 변환
+- Train/Test Split: train_test_split()을 사용하여 8:2 비율, stratify 옵션으로 이탈 여부 비율 유지하며 데이터 분할<br/>
+   ※ Pipeline을 활용해 SMOTE 적용 → 모델 학습을 일괄 처리하여 코드 재사용성과 확장성 향상
+```python
+smote=SMOTE(random_state=42)
+X_resample,y_resample = smote.fit_resample(X_train_scaled,y_train)
+```
+  ![image](https://github.com/user-attachments/assets/40a2a50a-11a4-4547-8c21-fedd36202885)
+- recall이 0.28 → 0.52로 크게 상승 → **이탈자를 훨씬 더 많이 잡아냄.**
+- precision은 줄었지만 이는 이탈자 예측을 더 시도했기 때문에 자연스러운 현상.
+- f1-score도 올라서 **균형 잡힌 예측 성능 향상.**
 
+
+## ⬇️ 언더샘플링
+### ⚙️ 전처리 요약
+- 클래스 불균형 처리: **언더샘플링**으로 **이탈자 수(1)** 에 맞춰 비이탈자 수 조정
+- 원핫 인코딩: 범주형 변수 변환
+- Train/Test Split: train_test_split() 사용하여 **8:2 비율**로 분할
+
+### 1. 앙상블 (기본)
+- Voting 방식: Hard Voting
+→ 로지스틱 회귀, DecisionTreeClassifier, XGBoost의 다수결 투표로 최종 예측을 결정하는 기본 앙상블 방식.
+```python
+VotingClassifier(
+    estimators=[
+        ('lr_clf', LogisticRegression()),
+        ('dt_clf', DecisionTreeClassifier()),
+        ('xgb_clf', XGBClassifier())
+    ],
+    voting='hard'
+)
+```
+![image](https://github.com/user-attachments/assets/41c0477d-97c2-4ace-9722-1390e96d9634)
+
+### 2. 앙상블 + GridSearchCV 
+- Voting 방식: Soft Voting + 하이퍼파라미터 튜닝(GridSearchCV)
+→ 각 모델을 GridSearchCV로 튜닝한 후 soft voting 방식으로 예측 확률 평균을 기반으로 최종 예측을 수행.
+```python
+# 4. Logistic Regression 튜닝
+lr_param_grid = {
+    'C': [0.01, 0.1, 1, 10],
+    'penalty': ['l2'],
+    'solver': ['lbfgs'],
+    'max_iter': [100, 500, 1000]
+}
+lr_grid = GridSearchCV(LogisticRegression(), lr_param_grid, scoring='f1', cv=3, verbose=1, n_jobs=-1)
+lr_grid.fit(X_train, y_train)
+best_lr = lr_grid.best_estimator_
+
+# 5. Decision Tree 튜닝
+dt_param_grid = {
+    'max_depth': [5, 10, 15],
+    'min_samples_split': [2, 5, 10],
+    'criterion': ['gini', 'entropy']
+}
+dt_grid = GridSearchCV(DecisionTreeClassifier(random_state=42), dt_param_grid, scoring='f1', cv=3, verbose=1, n_jobs=-1)
+dt_grid.fit(X_train, y_train)
+best_dt = dt_grid.best_estimator_
+
+# 6. XGBoost 튜닝
+xgb_param_grid = {
+    'n_estimators': [50, 100, 150],
+    'max_depth': [3, 5, 7],
+    'learning_rate': [0.01, 0.05, 0.1],
+    'subsample': [0.7, 0.8, 1.0],
+    'colsample_bytree': [0.7, 0.8, 1.0]
+}
+xgb_grid = GridSearchCV(XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42), xgb_param_grid, scoring='f1', cv=3, verbose=1, n_jobs=-1)
+xgb_grid.fit(X_train, y_train)
+best_xgb = xgb_grid.best_estimator_
+```
+![image](https://github.com/user-attachments/assets/3bb140d3-47cf-4bc7-a588-c5ac61934c04)
+
+
+### 3. 앙상블 + RandomizedSearchCV
+- Voting 방식: Soft Voting + 하이퍼파라미터 튜닝(RandomizedSearchCV)
+→ 모델별로 랜덤 탐색 기반 튜닝(RandomizedSearchCV) 후 soft voting으로 예측 확률 평균을 활용하여 예측.
+```python
+# 4. RandomizedSearchCV - Logistic Regression
+lr_param_dist = {
+    'C': uniform(0.01, 10),
+    'penalty': ['l2'],
+    'solver': ['lbfgs'],
+    'max_iter': [100, 300, 500, 1000]
+}
+lr_random = RandomizedSearchCV(
+    estimator=LogisticRegression(),
+    param_distributions=lr_param_dist,
+    n_iter=20,
+    scoring='f1',
+    cv=3,
+    verbose=1,
+    n_jobs=-1,
+    random_state=42
+)
+lr_random.fit(X_train, y_train)
+best_lr = lr_random.best_estimator_
+
+# 5. RandomizedSearchCV - Decision Tree
+dt_param_dist = {
+    'max_depth': randint(3, 20),
+    'min_samples_split': randint(2, 20),
+    'criterion': ['gini', 'entropy']
+}
+dt_random = RandomizedSearchCV(
+    estimator=DecisionTreeClassifier(random_state=42),
+    param_distributions=dt_param_dist,
+    n_iter=30,
+    scoring='f1',
+    cv=3,
+    verbose=1,
+    n_jobs=-1,
+    random_state=42
+)
+dt_random.fit(X_train, y_train)
+best_dt = dt_random.best_estimator_
+
+# 6. RandomizedSearchCV - XGBoost
+xgb_param_dist = {
+    'n_estimators': randint(50, 300),
+    'max_depth': randint(3, 15),
+    'learning_rate': uniform(0.01, 0.3),
+    'subsample': uniform(0.7, 0.3),
+    'colsample_bytree': uniform(0.7, 0.3)
+}
+xgb_random = RandomizedSearchCV(
+    estimator=XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42),
+    param_distributions=xgb_param_dist,
+    n_iter=30,
+    scoring='f1',
+    cv=3,
+    verbose=1,
+    n_jobs=-1,
+    random_state=42
+)
+xgb_random.fit(X_train, y_train)
+best_xgb = xgb_random.best_estimator_
+```
+![image](https://github.com/user-attachments/assets/f4610204-6c05-45a9-9fbe-74a4def9736b)
+
+### 4. 앙상블 + RandomizedSearchCV + LogisticRegression 정규화
+
+```python
+lr_pipeline = Pipeline([
+    ('scaler', StandardScaler()),
+    ('model', LogisticRegression())
+])
+lr_param_dist = {
+    'model__C': uniform(0.01, 10),
+    'model__penalty': ['l2'],
+    'model__solver': ['lbfgs'],
+    'model__max_iter': [100, 300, 500, 1000]
+}
+```
+![image](https://github.com/user-attachments/assets/72e7d5b1-d06e-4c7b-a7fa-045eb5446f54)
 ## 5. 🎯 하이퍼파라미터 튜닝
 - `GridSearchCV` (f1-score 기준)
   - XGBClassifier, DecisionTreeClassifier
@@ -50,174 +336,5 @@
 ## 8. 한줄 회고
 
 
-# 프로젝트 주제 :
-
-# 📅 개발 기간
-**2025년 3월 31일** ~ **2025년 4월 1일**
-
-## 🎯 프로젝트 개요
-
-### 프로젝트 목표
-- 
-
-### 기대 효과
-
- **1. **
-- **
-- **
-
- **2. **
-- 
-
- **3. **
-- 
-- 
-
-### **접근 방식**:
-
-   
-### **타겟 변수**: **`수강취소여부`** ('Yes': 수강취소 o , 'No': 수강취소 x)
-
-## 📂데이터 구성 
-`assessments.csv` : 
-`courses.csv`:
-`studentInfo.csv`
-`studentRegistration.csv`
-`studentAssessment.csv`
-
-### - 데이터소스
-
-## 🔧 기술 스택
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white" style="display: inline-block; margin: 5px;">
-  <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" style="display: inline-block; margin: 5px;">
-  <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=NumPy&logoColor=white" style="display: inline-block; margin: 5px;">
-</p>
-
-
-## 2️⃣ 데이터 셋
-# Merging Dataframes
-
-이 프로젝트에서는 여러 데이터 파일을 병합하여 학생들의 학습 활동과 관련된 다양한 분석을 수행합니다. 각 데이터 파일은 다음과 같은 정보를 포함하고 있습니다:
-
-## 1. 학생 정보 관련 파일
-- **studentInfo.csv**: 학생의 인구 통계 정보, 등록 정보 등을 담고 있습니다.
-
-## 2. 과정 정보 관련 파일
-- **courses.csv**: 각 코스(모듈)에 대한 정보를 담고 있습니다.
-- **assessments.csv**: 코스 내의 평가 정보 (과제, 시험 등)를 담고 있습니다.
-
-## 3. 학생 성적 관련 파일
-- **studentAssessment.csv**: 학생들의 평가 점수를 담고 있습니다.
-- **studentRegistration.csv**: 학생의 코스 등록 정보를 담고 있습니다.
-
-## 4. VLE 활동 관련 파일
-- **vle.csv**: VLE 활동에 대한 설명 정보를 담고 있습니다.
-- **studentVle.csv**: 학생의 VLE(Virtual Learning Environment) 활동 데이터를 담고 있습니다.
-
-이 데이터들은 다양한 분석을 위해 병합될 예정이며, 이를 통해 학생들의 성적, 학습 활동, 평가 등 다양한 측면에서 통찰을 얻을 수 있습니다.
-
-![image](https://github.com/user-attachments/assets/2cfa138d-a3aa-44d0-86ed-743312566af0)
-
----
-### 데이터 병합 과정
-![image](https://github.com/user-attachments/assets/30c486af-4ccf-4940-9960-68d6e28fa84f)
-- 각각 사진 병합 
-
-![image](https://github.com/user-attachments/assets/4628b792-cfee-41a1-8ace-aa20a437b605)
-- 한번에 사진 병합
-
-## 3️⃣ 전처리(Data Preprocessing)
-
-### 1. 결측치 처리
-
-### `date`
-
-- 대부분 `assessment_type = "Exam"`에 해당
-- 시험은 일반적으로 강의 종료일에 시행됨
-→ `module_presentation_length`를 활용해 **강의 마지막 날짜로 채움**
-
-![image](https://github.com/user-attachments/assets/60390ed7-d70f-4dd2-8733-7f74884ec728)
-
-### 🔹 결측치 제거
-### `score`
-
-- 총 173건 결측
-    - `Withdrawn`(이탈자): 72개
-    - `Pass`, `Fail`, `Distinction`(수료자): 101개
-- 과제를 제출했는데도 점수가 없는 경우로 추정… 수가 적으므로 **삭제 처리**
-![image](https://github.com/user-attachments/assets/c3ae7c6c-3927-4db9-bcdf-17afcacc547e)
-
-### `imd_band`
-
-- 총 7697건 결측
-- 전체 28,785명 중 약 **971명**의 `imd_band`(지역 기반 사회경제 수준 지표)가 없음
-- 'imd_band' 컬럼에서 결측치가 있는 행을 삭제
-![image](https://github.com/user-attachments/assets/367bcdcb-e5ce-48cb-b883-ebbc0efe3234)
-
-### `date_unregistration`
-
-- 결측치 160,857건
-- 해당 컬럼은 **"언제 수강을 중도 이탈했는가"**를 의미
-- - 수강 등록일이 없는 7건 → **삭제**
-→ **결측 = 중도 이탈하지 않은 수료자**
-→ 즉, 의미 있는 결측이므로 **삭제하지 않음** → 인코딩 과정에서 결측치를 처리 한다!!!
-
-### `final_result 이상치 처리 코드`
-<<<<<<< HEAD
-=======
-<img src="https://github.com/user-attachments/assets/82e61b3a-c481-4d34-8b4d-d228749b24b0" style="display: inline; margin-right: 10px;">
-
-![image](https://github.com/user-attachments/assets/f5cc97f2-0d1e-41f3-adfd-badd28856ce0)
-
-
->>>>>>> a7aeb3cc40012ac5f44d9d35474d7f765a271b77
-- **`date_unregistration`**: 이 필드는 학생이 온라인 학습을 이탈한 날짜를 나타냅니다. 학생이 학습을 중단하거나 수업을 탈퇴한 시점을 추적할 수 있습니다.
-
-- **`final_result`**: 이 필드는 학생의 최종 성적 결과를 나타냅니다. 다만, **`date_unregistration`**이 존재하는 경우(즉, 학생이 온라인 학습을 이탈한 경우), 해당 학생은 **`Fail`** 상태로 결과가 나오지 않도록 처리되었습니다. 이유는 학습 이탈이 성적에 영향을 미치므로, 이탈 학생에게는 `Fail` 값을 부여할 수 없기 때문입니다.
-
-### 처리 방식
-
-- **학습 이탈**: `date_unregistration` 값이 존재하는 학생은 학습을 중단한 것으로 간주되며, 이들은 더 이상 학습을 지속하지 않으므로 **`Fail`** 상태로 처리될 수 없습니다.
-  
-- **이탈 학생 제외**: `final_result` 값이 `Fail`로 설정될 수 없는 이유는, `date_unregistration`에 의해 이미 이탈한 학생은 성적이 `Fail`로 기록되지 않기 때문입니다.
-
-따라서, **`date_unregistration`** 값이 존재하는 학생은 `final_result` 값이 **`Fail`** 이 아니도록 예외 처리가 이루어집니다.
-
-<<<<<<< HEAD
-<img src="https://github.com/user-attachments/assets/82e61b3a-c481-4d34-8b4d-d228749b24b0" style="display: inline; margin-right: 10px;">
-
-![image](https://github.com/user-attachments/assets/f5cc97f2-0d1e-41f3-adfd-badd28856ce0)
-
-### 2.인코딩
-![image](https://github.com/user-attachments/assets/bdd3bec7-c29f-49b2-a7d5-a0108f37bbef)
-
-### 불필요한 특성 제거
-   - 분석에 불필요하거나 중복되는 정보를 가진 열 제거
-![image](https://github.com/user-attachments/assets/6bfea0d2-d3ab-43d1-ae69-88ef89b54229)
-
-
-=======
-### 2.인코딩
- ![image](https://github.com/user-attachments/assets/bdd3bec7-c29f-49b2-a7d5-a0108f37bbef)
- 
- ### 불필요한 특성 제거
-    - 분석에 불필요하거나 중복되는 정보를 가진 열 제거
- ![image](https://github.com/user-attachments/assets/6bfea0d2-d3ab-43d1-ae69-88ef89b54229)
-
-### 특성 엔지니어링
-#### 학생의 성적 관련 특성
-  - 각 학생의 평균 점수, 최고 점수, 최저 점수, 점수의 표준편차
-    - 각 학생당 코스별 성적 편차 필요할까?
-  - 점수 추세 (상승 또는 하락)
-  - 과제 난이도에 따른 가중 점수 -> 난이도 기준을 뭘로 잡아야하나?
- 
-##### my_average_score, my_max_score, my_min_score, my_score_std, my_score_trend, assesment_weight, weighted_score
-
-- my_avg_score : 개인 학업 성취도 수준 파악
-- my_max/min_score/my_score_std : 특정 과목 강점/약점 식별 및 극단적 편차 분석
-- my_score_trend	: 학습 효과성 평가 (지속적 상승=효율적 학습법, 하락=개입 필요)
-- weighted_score :	난이도 대비 성취도 → "B과제는 고난이도지만 고가중점수 → Distinct 학생" 
 
 
