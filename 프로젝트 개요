@@ -1,92 +1,93 @@
-# 온라인 학습 플랫폼 회원 이탈 예측
-
-## 1️⃣ 팀원 소개
-- **SK 네트웍스 Family AI 캠프 11기**
-
-- **팀명:** **6조**
+# SKN11-2nd-6Team
+# 팀명: **6조**
 ---
 
-|[@백미송](https://github.com/misong-hub)|[@김성지](https://github.com/kimseoungji0801)|[@이채은](https://github.com/chaeeunlee05)|[@이혜성](https://github.com/comet39)|[@홍성욱](https://github.com/Sung-WookHong)|
+## 팀원 소개
+
+|[@홍성욱](https://github.com/Sung-WookHong)|[@이혜성](https://github.com/comet39)|[@이채은](https://github.com/chaeeunlee05)|[@김성지](https://github.com/kimseoungji0801)|[@백미송](https://github.com/misong-hub)|
 |------|------|------|------|------|
-| <img src="https://github.com/user-attachments/assets/2dc83746-b3a4-45a8-96d3-36a458222cc1" width="200"/> | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/9c95cb5d-a8e2-4716-a7a4-7278aee484d1" width="200"/> | <img src="https://github.com/user-attachments/assets/df0d3172-e97e-4909-8c53-dbb5ee137713" width="200"/> | <img src="https://github.com/user-attachments/assets/27d29763-0f6a-4b17-8151-e5654c407e7d" width="200"/> |
+| <img src="https://github.com/user-attachments/assets/df0d3172-e97e-4909-8c53-dbb5ee137713" width="200"/>|<img src="https://github.com/user-attachments/assets/9c95cb5d-a8e2-4716-a7a4-7278aee484d1" width="200"/>  | <img src="https://github.com/user-attachments/assets/2dc83746-b3a4-45a8-96d3-36a458222cc1" width="200"/> |  <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/27d29763-0f6a-4b17-8151-e5654c407e7d" width="200"/> |
 
-# 목차 
+# 프로젝트명 : 대학교 수강 이탈 예측 모델링
 
-## 1. 🔍 프로젝트 개요
-## 2. 🧹 데이터 전처리
+## 목차 
+
+### 1. 🎯 프로젝트 개요
+### 2. 🧹 데이터 전처리
    Feature Importance 시각화 추가하기
-## 3. 📊 탐색적 데이터 분석 (EDA)
+### 3. 📊 탐색적 데이터 분석 (EDA)
 - StandardScaler 적용 (정규화) 추가하기
 ## 4. ⚙️ 모델링
 ### 4.1 베이스라인 모델
 - RandomForestClassifier
 - VotingClassifier (Logistic + DecisionTree + XGBoost)
-
 ### 4.2 클래스 불균형 처리
 - 언더샘플링 (Downsampling)
 - 오버샘플링 (SMOTE)
-
 ### 4.3 파이프라인 구성
 - Pipeline + 모델 조합
-
 ## 5. 🎯 하이퍼파라미터 튜닝
 - `GridSearchCV` (f1-score 기준)
   - XGBClassifier, DecisionTreeClassifier
 - `RandomizedSearchCV` (넓은 범위 탐색)
 - 최적 파라미터 기반 재학습
-
 ## 6. 📈 모델 평가 (최종)
 - 학습 정확도 / 테스트 정확도
 - classification_report: Precision / Recall / F1-score
 - 오버피팅 여부 확인
-
-
 ## 7. 💡 인사이트 및 결론
 - 이탈자의 주요 특성 요약
 - 가장 영향력 있는 변수 분석 (예: 점수 편차↑, 제출률↓, 지각률↑)
 - 이탈 위험군 조기 예측 가능성
 - 실무 적용 시나리오 제안
-- 
 ## 8. 한줄 회고
 
 
+# 프로젝트 개요
 
-# 프로젝트 주제 :
-
-# 📅 개발 기간
+## 📅 개발 기간
 **2025년 3월 31일** ~ **2025년 4월 1일**
 
-## 🎯 프로젝트 개요
+## 📌 프로젝트 목표
+- 대학교 수강생들의 이탈(수강 취소) 여부를 조기 예측하여 학습 지원 및 개입 방안 마련<br/>
+- 학생들의 과제 제출 패턴 및 성적 특성을 분석하여 이탈 징후를 파악<br/>
+- 머신러닝 모델을 통해 이탈 위험군을 사전에 식별하고 예측 성능을 극대화<br/>
 
-### 프로젝트 목표
-- 
+## 🌟 기대 효과
+- 이탈 가능성 높은 학생을 조기에 파악함으로써 맞춤형 학습 지원 제공 가능<br/>
+- 교육 기관의 학업 성공률 및 수료율 향상<br/>
+- *과제 기반 행동 데이터만으로도 충분한 예측 성능을 확보함으로써 효율적인 데이터 수집 및 분석 체계 구축 가능*<br/>
 
-### 기대 효과
-
- **1. **
-- **
-- **
-
- **2. **
-- 
-
- **3. **
-- 
-- 
-
-### **접근 방식**:
+## 🛠️ **접근 방식**:
+- Open University의 실제 데이터셋(OULAD) 활용
+- 과제 제출율, 과제 점수 분위수, 평균 성적 Z-점수 등을 주요 피처로 활용
+- 수강생의 이탈 여부(Withdrawn) 를 타겟 변수로 설정
+- 데이터 전처리 및 피처 엔지니어링을 통해 날짜 정보, 제출 시기, 등록 시기 등을 범주화하여 반영
+- Logistic Regression, Random Forest 등의 분류 모델을 적용
+-최종적으로 모델 성능을 평가하고 이탈 예측에 가장 영향력 있는 변수 분석
 
    
-### **타겟 변수**: **`수강취소여부`** ('Yes': 수강취소 o , 'No': 수강취소 x)
+## 🎯 **타겟 변수**: **`수강취소여부`** 
+- Yes → 수강을 취소한 학생 (이탈)
+- No → 수강을 완료한 학생 (비이탈)
 
-## 📂데이터 구성 
-`assessments.csv` : <br/> 
-`courses.csv`: <br/>
-`studentInfo.csv` : <br/>
-`studentRegistration.csv`: <br/>
-`studentAssessment.csv`: <br/>
+## 📂 데이터셋
+[Open University Learning Analytics Dataset (OULAD)](https://analyse.kmi.open.ac.uk/#open-dataset) <br/>
+오픈 유니버시티(Open University)에서 공개한 영국 Open University 학생들의 **온라인 학습 행동 및 이탈 관련 데이터셋**.<br/>
+학습자의 활동, 평가 성적, 이탈 여부 등 **교육 분석(learning analytics)** 연구에 유용하게 쓰이는 대표적인 공개 데이터
 
-### - 데이터소스
+### 데이터 구성 (5개의 CSV 파일)
+
+1. `assessments.csv` : 각 강의의 과제(평가) 관련 정보 <br/>
+2. `studentAssessment.csv`: 학생들의 과제 제출 및 성적 정보 <br/>
+3. `courses.csv`: 개설된 각 강의(course)에 대한 정보 <br/>
+4. `studentInfo.csv` : 각 학생의 인구통계학적 정보와 수강 결과 <br/>
+5. `studentRegistration.csv`: 학생들의 수강 신청 및 이탈(취소) 정보 <br/>
+
+    ↪️ **`merged_data.csv`** : 분석과 모델링에 필요한 주요 정보를 포함한 최종 분석용 데이터셋.  <br/>
+   -5개의 csv 파일을 `학생 ID(id_student)`, `과목 코드(code_module)`, `학기(code_presentation)`를 기준으로 병합 <br/>
+   ![image](https://github.com/user-attachments/assets/4628b792-cfee-41a1-8ace-aa20a437b605)
+
 
 ## 🔧 기술 스택
 
@@ -97,37 +98,7 @@
 </p>
 
 
-## 2️⃣ 데이터 셋
-# Merging Dataframes
 
-이 프로젝트에서는 여러 데이터 파일을 병합하여 학생들의 학습 활동과 관련된 다양한 분석을 수행합니다. 각 데이터 파일은 다음과 같은 정보를 포함하고 있습니다:
-
-## 1. 학생 정보 관련 파일
-- **studentInfo.csv**: 학생의 인구 통계 정보, 등록 정보 등을 담고 있습니다.
-
-## 2. 과정 정보 관련 파일
-- **courses.csv**: 각 코스(모듈)에 대한 정보를 담고 있습니다.
-- **assessments.csv**: 코스 내의 평가 정보 (과제, 시험 등)를 담고 있습니다.
-
-## 3. 학생 성적 관련 파일
-- **studentAssessment.csv**: 학생들의 평가 점수를 담고 있습니다.
-- **studentRegistration.csv**: 학생의 코스 등록 정보를 담고 있습니다.
-
-## 4. VLE 활동 관련 파일
-- **vle.csv**: VLE 활동에 대한 설명 정보를 담고 있습니다.
-- **studentVle.csv**: 학생의 VLE(Virtual Learning Environment) 활동 데이터를 담고 있습니다.
-
-이 데이터들은 다양한 분석을 위해 병합될 예정이며, 이를 통해 학생들의 성적, 학습 활동, 평가 등 다양한 측면에서 통찰을 얻을 수 있습니다.
-
-![image](https://github.com/user-attachments/assets/2cfa138d-a3aa-44d0-86ed-743312566af0)
-
----
-### 데이터 병합 과정
-![image](https://github.com/user-attachments/assets/30c486af-4ccf-4940-9960-68d6e28fa84f)
-- 각각 사진 병합 
-
-![image](https://github.com/user-attachments/assets/4628b792-cfee-41a1-8ace-aa20a437b605)
-- 한번에 사진 병합
 
 ## 3️⃣ 전처리(Data Preprocessing)
 
