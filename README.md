@@ -91,6 +91,14 @@
 → 즉, 의미 있는 결측이므로 **삭제하지 않음** → 인코딩 과정에서 결측치를 처리 한다!!!
 
 ### `final_result 이상치 처리 코드`
+<<<<<<< HEAD
+=======
+<img src="https://github.com/user-attachments/assets/82e61b3a-c481-4d34-8b4d-d228749b24b0" style="display: inline; margin-right: 10px;">
+
+![image](https://github.com/user-attachments/assets/f5cc97f2-0d1e-41f3-adfd-badd28856ce0)
+
+
+>>>>>>> a7aeb3cc40012ac5f44d9d35474d7f765a271b77
 - **`date_unregistration`**: 이 필드는 학생이 온라인 학습을 이탈한 날짜를 나타냅니다. 학생이 학습을 중단하거나 수업을 탈퇴한 시점을 추적할 수 있습니다.
 
 - **`final_result`**: 이 필드는 학생의 최종 성적 결과를 나타냅니다. 다만, **`date_unregistration`**이 존재하는 경우(즉, 학생이 온라인 학습을 이탈한 경우), 해당 학생은 **`Fail`** 상태로 결과가 나오지 않도록 처리되었습니다. 이유는 학습 이탈이 성적에 영향을 미치므로, 이탈 학생에게는 `Fail` 값을 부여할 수 없기 때문입니다.
@@ -103,6 +111,7 @@
 
 따라서, **`date_unregistration`** 값이 존재하는 학생은 `final_result` 값이 **`Fail`** 이 아니도록 예외 처리가 이루어집니다.
 
+<<<<<<< HEAD
 <img src="https://github.com/user-attachments/assets/82e61b3a-c481-4d34-8b4d-d228749b24b0" style="display: inline; margin-right: 10px;">
 
 ![image](https://github.com/user-attachments/assets/f5cc97f2-0d1e-41f3-adfd-badd28856ce0)
@@ -115,3 +124,11 @@
 ![image](https://github.com/user-attachments/assets/6bfea0d2-d3ab-43d1-ae69-88ef89b54229)
 
 
+=======
+### 2.인코딩
+ ![image](https://github.com/user-attachments/assets/bdd3bec7-c29f-49b2-a7d5-a0108f37bbef)
+ 
+ ### 불필요한 특성 제거
+    - 분석에 불필요하거나 중복되는 정보를 가진 열 제거
+ ![image](https://github.com/user-attachments/assets/6bfea0d2-d3ab-43d1-ae69-88ef89b54229)
+>>>>>>> a7aeb3cc40012ac5f44d9d35474d7f765a271b77
