@@ -140,6 +140,11 @@
 - my_score_trend	: 학습 효과성 평가 (지속적 상승=효율적 학습법, 하락=개입 필요)
 - weighted_score :	난이도 대비 성취도 → "B과제는 고난이도지만 고가중점수 → Distinct 학생" 
 
+### 특성 중요도
+![image](https://github.com/user-attachments/assets/7c3e3d08-a376-457f-b151-7f8d12368684)
+
+![image](https://github.com/user-attachments/assets/80662c7d-7f84-46ed-8905-0c7e265982dd)
+
 
 
 ## 3. 📊 탐색적 데이터 분석 (EDA)
