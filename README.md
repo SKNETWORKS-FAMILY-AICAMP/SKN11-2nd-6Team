@@ -1,6 +1,8 @@
-# 프로젝트명 :🎓 대학교 수강 이탈 예측 모델링
+# 🎓 대학교 수강 이탈 예측 모델링
 
-## 1️⃣ 팀원 소개
+# 🔍 프로젝트 개요
+
+## 🏃‍♂️ 팀원 소개
 - **SK 네트웍스 Family AI 캠프 11기**
 
 - **팀명:** **6조**
@@ -9,9 +11,6 @@
 |[@백미송](https://github.com/misong-hub)|[@김성지](https://github.com/kimseoungji0801)|[@이채은](https://github.com/chaeeunlee05)|[@이혜성](https://github.com/comet39)|[@홍성욱](https://github.com/Sung-WookHong)|
 |------|------|------|------|------|
 | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/2dc83746-b3a4-45a8-96d3-36a458222cc1" width="200"/> | <img src="https://github.com/user-attachments/assets/14e4c4f8-80b6-41d9-befb-9e0c59b96443" width="200"/> | <img src="https://github.com/user-attachments/assets/da607129-b42f-4275-84cc-5e1379a6f749" width="200"/> |
-
-
-# 1. 🔍 프로젝트 개요
 
 ## 📅 개발 기간
 **2025년 3월 31일** ~ **2025년 4월 1일**
@@ -35,12 +34,6 @@
 - Logistic Regression, Random Forest 등의 분류 모델을 적용
 -최종적으로 모델 성능을 평가하고 이탈 예측에 가장 영향력 있는 변수 분석
 
-   
-## 🎯 **타겟 변수**: **`수강취소여부`** 
-- Yes → 수강을 취소한 학생 (이탈)
-- No → 수강을 완료한 학생 (비이탈)
-
-
 ## 🔧 기술 스택
 
 <p align="center">
@@ -49,12 +42,14 @@
   <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=NumPy&logoColor=white" style="display: inline-block; margin: 5px;">
 </p>
 
-## 📂 데이터셋
+---
+
+# 📂 데이터셋
 [Open University Learning Analytics Dataset (OULAD)](https://analyse.kmi.open.ac.uk/#open-dataset) <br/>
 오픈 유니버시티(Open University)에서 공개한 영국 Open University 학생들의 **온라인 학습 행동 및 이탈 관련 데이터셋**.<br/>
 학습자의 활동, 평가 성적, 이탈 여부 등 **교육 분석(learning analytics)** 연구에 유용하게 쓰이는 대표적인 공개 데이터
 
-### 데이터 구성 (5개의 CSV 파일)
+## 데이터 구성 (5개의 CSV 파일)
 
 1. `assessments.csv` : 각 강의의 과제(평가) 관련 정보 <br/>
 2. `studentAssessment.csv`: 학생들의 과제 제출 및 성적 정보 <br/>
@@ -66,12 +61,16 @@
    -5개의 csv 파일을 `학생 ID(id_student)`, `과목 코드(code_module)`, `학기(code_presentation)`를 기준으로 병합 <br/>
    ![image](https://github.com/user-attachments/assets/4628b792-cfee-41a1-8ace-aa20a437b605)
 
+   
+## 🎯 **타겟 변수**: **`수강취소여부`** 
+- Yes → 수강을 취소한 학생 (이탈)
+- No → 수강을 완료한 학생 (비이탈)
 
-## 2. 🧹 데이터 전처리(Data Preprocessing)
-   Feature Importance 시각화 추가하기
+---
 
+# 🧹 데이터 전처리(Data Preprocessing)
 
-### 1. 결측치 처리
+## 1. 결측치 처리
 
 ### `date`
 
@@ -80,7 +79,6 @@
 → `module_presentation_length`를 활용해 **강의 마지막 날짜로 채움**
 
 
-### 🔹 결측치 제거
 ### `score`
 
 - 총 173건 결측
@@ -122,7 +120,7 @@
 
 
 
-### 2.인코딩
+## 2.인코딩
 ![image](https://github.com/user-attachments/assets/bdd3bec7-c29f-49b2-a7d5-a0108f37bbef)
 
 ### 불필요한 특성 제거
@@ -130,7 +128,7 @@
 ![image](https://github.com/user-attachments/assets/6bfea0d2-d3ab-43d1-ae69-88ef89b54229)
 
 
-### 특성 엔지니어링
+## 3. 특성 엔지니어링
 #### 학생의 성적 관련 특성
   - 각 학생의 평균 점수, 최고 점수, 최저 점수, 점수의 표준편차
     - 각 학생당 코스별 성적 편차 필요할까?
@@ -144,207 +142,292 @@
 - my_score_trend	: 학습 효과성 평가 (지속적 상승=효율적 학습법, 하락=개입 필요)
 - weighted_score :	난이도 대비 성취도 → "B과제는 고난이도지만 고가중점수 → Distinct 학생" 
 
-### 특성 중요도
-![image](https://github.com/user-attachments/assets/7c3e3d08-a376-457f-b151-7f8d12368684)
 
-
-## 3. 📊 탐색적 데이터 분석 (EDA)
-- StandardScaler 적용 (정규화) 추가하기
+## 4. StandardScaler 적용 (정규화) 추가하기
 ##### 데이터 구조 확인
 - 데이터 프레임 정보(인코딩 후)
 ![image](https://github.com/user-attachments/assets/86b50ff7-8f4a-41aa-87f2-c1e189d900e5)
 
-  
-# 4. 모델링
 
-### ⚠️**클래스 불균형 문제**
+---
+
+# 📊 탐색적 데이터 분석 (EDA)
+
+### 특성 중요도
+![image](https://github.com/user-attachments/assets/7c3e3d08-a376-457f-b151-7f8d12368684)
+
+---
+
+# ⚙️ 모델링
+
+## **모델링 개요**
+### 🚨 학생 이탈 조기 예측
+
+1. 앙상블, 클러스터링을 통해 기본적인 이탈 예측 모델을 생성한다.
+2. 협업 필터링을 통해 새로운 학생과 유사한 패턴을 보이는 학생들을 추출한다.
+    - 이때 새로운 학생의 정보가 어디까지 있어야 협업 필터링이 유의미할지는 eda를 통해 도출
+        - **학생 기본 데이터** : 나이, 성별, 경제수준, 장애여부 등
+        - **학업 데이터**: 과제 제출률, 시험 성적, 과목 난이도 등
+        - **행동 데이터**: 지각 제출 비율, 이탈 학생의 이탈 단계 등
+3. 만들어진 모델을 통해 새 학생이 어떤 조치를 했을 때 이탈을 하지 않을지 예측한다.
+4. 추후 개발 : 자동 경고 시스템 구축 (예: 학습 참여도가 일정 임계값 이하로 떨어지면 교수자 및 학생에게 알림)
+
+## **클래스 불균형 문제**
 ![image](https://github.com/user-attachments/assets/88a00bb3-78b2-4786-8298-b86bcd0f02d2)
-```python
-voting_clf.fit(X_train_scaled, y_train)
-y_pred = voting_clf.predict(X_test_scaled)
-```
-![image](https://github.com/user-attachments/assets/96bfc0b6-2686-4d2b-bf50-06ded91dba83)
 - **클래스 0 (비이탈자)** 는 잘 맞추고 있음 (recall=1.00).
 - **클래스 1 (이탈자)** 는 recall이 0.28, 즉 이탈자를 정확히 잡아내지 못하고 있음.
 - 전반적으로 **정확도 95%** 는 높지만, 이는 다수 클래스인 0에 의존한 착시.
 
-## ⬆️ 오버샘플링
-### ⚙️ 전처리 요약
-- 클래스 불균형 처리: SMOTE를 통해 **이탈자 수(1)** 를 오버샘플링하여 균형 잡힌 학습 데이터셋 구성
-- 정규화: StandardScaler를 이용해 모든 특성값을 표준 정규분포(평균=0, 표준편차=1)로 변환
-- Train/Test Split: train_test_split()을 사용하여 8:2 비율, stratify 옵션으로 이탈 여부 비율 유지하며 데이터 분할<br/>
-   ※ Pipeline을 활용해 SMOTE 적용 → 모델 학습을 일괄 처리하여 코드 재사용성과 확장성 향상
-```python
-smote=SMOTE(random_state=42)
-X_resample,y_resample = smote.fit_resample(X_train_scaled,y_train)
+   ### ⬆️ 오버샘플링
+   - 클래스 불균형 처리: SMOTE를 통해 **이탈자 수(1)** 를 오버샘플링하여 균형 잡힌 학습 데이터셋 구성
+   - 정규화: StandardScaler를 이용해 모든 특성값을 표준 정규분포(평균=0, 표준편차=1)로 변환
+   - Train/Test Split: train_test_split()을 사용하여 8:2 비율, stratify 옵션으로 이탈 여부 비율 유지하며 데이터 분할<br/>
+      ※ Pipeline을 활용해 SMOTE 적용 → 모델 학습을 일괄 처리하여 코드 재사용성과 확장성 향상
+   ```python
+   smote=SMOTE(random_state=42)
+   X_resample,y_resample = smote.fit_resample(X_train_scaled,y_train)
+   ```
+     ![image](https://github.com/user-attachments/assets/8626ee39-ce18-4a18-a17c-3b2e0d9d26e8)
+   - recall이 0.28 → 0.52로 크게 상승 → **이탈자를 훨씬 더 많이 잡아냄.**
+   - precision은 줄었지만 이는 이탈자 예측을 더 시도했기 때문에 자연스러운 현상.
+   - f1-score도 올라서 **균형 잡힌 예측 성능 향상.**
+   
+   
+   ### ⬇️ 언더샘플링
+   - 클래스 불균형 처리: **언더샘플링**으로 **이탈자 수(1)** 에 맞춰 비이탈자 수 조정
+   - 원핫 인코딩: 범주형 변수 변환
+   - Train/Test Split: train_test_split() 사용하여 **8:2 비율**로 분할
+
+### 2. 클러스터 기반 분류 모델
+
+#### 📌 개요
+클러스터 기반의 이진 분류 모델을 사용하여 새로운 학생의 데이터가 들어왔을 때 이탈을 예측합니다. 비지도 학습(클러스터링)과 지도 학습(분류 모델)을 결합하여, 서로 다른 학생 그룹에 특화된 예측 모델을 생성하는 방식으로 설계되었습니다.
+
+#### 👥 클러스터링 + 이진 분류 모델
+
+- 앙상블 모델을 통한 최종 이진 분류 모델 선택 👉 **XGBoost**
+     - 그래디언트 부스팅의 순차적 오류 수정
+     - 클래스 불균형 대응력 (under sampling과의 시너지)
+    - 이유.. 적기
 ```
-  ![image](https://github.com/user-attachments/assets/8626ee39-ce18-4a18-a17c-3b2e0d9d26e8)
-- recall이 0.28 → 0.52로 크게 상승 → **이탈자를 훨씬 더 많이 잡아냄.**
-- precision은 줄었지만 이는 이탈자 예측을 더 시도했기 때문에 자연스러운 현상.
-- f1-score도 올라서 **균형 잡힌 예측 성능 향상.**
+1. 데이터 스케일링 
+2. PCA를 통해 데이터를 2차원으로 축소 
+3. 각 클러스터에 대해 별도의 XGBoost 모델 
+4. 각 클러스터 id 기준으로 모델과 스케일러를 저장
+```
+
+#### 🪄 이탈 예측 프로세스
+```
+1. 새로운 학생 유입
+2. 내 클러스터은 어디? (id)
+3. 내 클러스터 id에 해당하는 모델을 사용
+4. 새로운 학생의 최종 이탈 예측 확인
+```
 
 
-## ⬇️ 언더샘플링
-### ⚙️ 전처리 요약
-- 클래스 불균형 처리: **언더샘플링**으로 **이탈자 수(1)** 에 맞춰 비이탈자 수 조정
-- 원핫 인코딩: 범주형 변수 변환
-- Train/Test Split: train_test_split() 사용하여 **8:2 비율**로 분할
+#### 📊 결과 분석
+##### 클러스터 분포 통계 확인
+
+![](img/clustering.png)
+
+##### 클러스터 별 모델 학습
+````
+🚀 클러스터 4 모델 학습 시작...
+리샘플링 후 클래스 분포:
+final_result
+0    2335
+1    2335
+Name: count, dtype: int64
+
+📊 클러스터 4 성능:
+              precision    recall  f1-score   support
+
+           0       0.96      0.96      0.96       585
+           1       0.40      0.41      0.41        39
+
+    accuracy                           0.92       624
+   macro avg       0.68      0.68      0.68       624
+weighted avg       0.93      0.92      0.93       624
+`````
+`````
+🚀 클러스터 2 모델 학습 시작...
+리샘플링 후 클래스 분포:
+final_result
+0    26679
+1    26679
+Name: count, dtype: int64
+
+📊 클러스터 2 성능:
+              precision    recall  f1-score   support
+
+           0       0.98      0.92      0.95      6670
+           1       0.31      0.61      0.41       391
+
+    accuracy                           0.90      7061
+   macro avg       0.64      0.77      0.68      7061
+weighted avg       0.94      0.90      0.92      7061
+`````
+
+
+
+
+#### 💡 클러스터링 모델 개선 
+##### 최적의 클러스터 개수 찾기(엘보우 메서드 또는 실루엣 분석 활용)
+
+#####  각 클러스터별 특징 중요도 분석
+
+
+## 🎯 하이퍼파라미터 튜닝
 
 ### 1. 앙상블 (기본)
-- Voting 방식: Hard Voting
-→ 로지스틱 회귀, DecisionTreeClassifier, XGBoost의 다수결 투표로 최종 예측을 결정하는 기본 앙상블 방식.
-```python
-VotingClassifier(
-    estimators=[
-        ('lr_clf', LogisticRegression()),
-        ('dt_clf', DecisionTreeClassifier()),
-        ('xgb_clf', XGBClassifier())
-    ],
-    voting='hard'
-)
-```
-![image](https://github.com/user-attachments/assets/41c0477d-97c2-4ace-9722-1390e96d9634)
+   - Voting 방식: Hard Voting
+   → 로지스틱 회귀, DecisionTreeClassifier, XGBoost의 다수결 투표로 최종 예측을 결정하는 기본 앙상블 방식.
+   ```python
+   VotingClassifier(
+       estimators=[
+           ('lr_clf', LogisticRegression()),
+           ('dt_clf', DecisionTreeClassifier()),
+           ('xgb_clf', XGBClassifier())
+       ],
+       voting='hard'
+   )
+   ```
+   ![image](https://github.com/user-attachments/assets/41c0477d-97c2-4ace-9722-1390e96d9634)
 
 ### 2. 앙상블 + GridSearchCV 
-- Voting 방식: Soft Voting + 하이퍼파라미터 튜닝(GridSearchCV)
-→ 각 모델을 GridSearchCV로 튜닝한 후 soft voting 방식으로 예측 확률 평균을 기반으로 최종 예측을 수행.
-```python
-# 4. Logistic Regression 튜닝
-lr_param_grid = {
-    'C': [0.01, 0.1, 1, 10],
-    'penalty': ['l2'],
-    'solver': ['lbfgs'],
-    'max_iter': [100, 500, 1000]
-}
-lr_grid = GridSearchCV(LogisticRegression(), lr_param_grid, scoring='f1', cv=3, verbose=1, n_jobs=-1)
-lr_grid.fit(X_train, y_train)
-best_lr = lr_grid.best_estimator_
-
-# 5. Decision Tree 튜닝
-dt_param_grid = {
-    'max_depth': [5, 10, 15],
-    'min_samples_split': [2, 5, 10],
-    'criterion': ['gini', 'entropy']
-}
-dt_grid = GridSearchCV(DecisionTreeClassifier(random_state=42), dt_param_grid, scoring='f1', cv=3, verbose=1, n_jobs=-1)
-dt_grid.fit(X_train, y_train)
-best_dt = dt_grid.best_estimator_
-
-# 6. XGBoost 튜닝
-xgb_param_grid = {
-    'n_estimators': [50, 100, 150],
-    'max_depth': [3, 5, 7],
-    'learning_rate': [0.01, 0.05, 0.1],
-    'subsample': [0.7, 0.8, 1.0],
-    'colsample_bytree': [0.7, 0.8, 1.0]
-}
-xgb_grid = GridSearchCV(XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42), xgb_param_grid, scoring='f1', cv=3, verbose=1, n_jobs=-1)
-xgb_grid.fit(X_train, y_train)
-best_xgb = xgb_grid.best_estimator_
-```
-![image](https://github.com/user-attachments/assets/3bb140d3-47cf-4bc7-a588-c5ac61934c04)
-
+   - Voting 방식: Soft Voting + 하이퍼파라미터 튜닝(GridSearchCV)
+   → 각 모델을 GridSearchCV로 튜닝한 후 soft voting 방식으로 예측 확률 평균을 기반으로 최종 예측을 수행.
+   ```python
+   # 4. Logistic Regression 튜닝
+   lr_param_grid = {
+       'C': [0.01, 0.1, 1, 10],
+       'penalty': ['l2'],
+       'solver': ['lbfgs'],
+       'max_iter': [100, 500, 1000]
+   }
+   lr_grid = GridSearchCV(LogisticRegression(), lr_param_grid, scoring='f1', cv=3, verbose=1, n_jobs=-1)
+   lr_grid.fit(X_train, y_train)
+   best_lr = lr_grid.best_estimator_
+   
+   # 5. Decision Tree 튜닝
+   dt_param_grid = {
+       'max_depth': [5, 10, 15],
+       'min_samples_split': [2, 5, 10],
+       'criterion': ['gini', 'entropy']
+   }
+   dt_grid = GridSearchCV(DecisionTreeClassifier(random_state=42), dt_param_grid, scoring='f1', cv=3, verbose=1, n_jobs=-1)
+   dt_grid.fit(X_train, y_train)
+   best_dt = dt_grid.best_estimator_
+   
+   # 6. XGBoost 튜닝
+   xgb_param_grid = {
+       'n_estimators': [50, 100, 150],
+       'max_depth': [3, 5, 7],
+       'learning_rate': [0.01, 0.05, 0.1],
+       'subsample': [0.7, 0.8, 1.0],
+       'colsample_bytree': [0.7, 0.8, 1.0]
+   }
+   xgb_grid = GridSearchCV(XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42), xgb_param_grid, scoring='f1', cv=3, verbose=1, n_jobs=-1)
+   xgb_grid.fit(X_train, y_train)
+   best_xgb = xgb_grid.best_estimator_
+   ```
+   ![image](https://github.com/user-attachments/assets/3bb140d3-47cf-4bc7-a588-c5ac61934c04)
 
 ### 3. 앙상블 + RandomizedSearchCV
-- Voting 방식: Soft Voting + 하이퍼파라미터 튜닝(RandomizedSearchCV)
-→ 모델별로 랜덤 탐색 기반 튜닝(RandomizedSearchCV) 후 soft voting으로 예측 확률 평균을 활용하여 예측.
-```python
-# 4. RandomizedSearchCV - Logistic Regression
-lr_param_dist = {
-    'C': uniform(0.01, 10),
-    'penalty': ['l2'],
-    'solver': ['lbfgs'],
-    'max_iter': [100, 300, 500, 1000]
-}
-lr_random = RandomizedSearchCV(
-    estimator=LogisticRegression(),
-    param_distributions=lr_param_dist,
-    n_iter=20,
-    scoring='f1',
-    cv=3,
-    verbose=1,
-    n_jobs=-1,
-    random_state=42
-)
-lr_random.fit(X_train, y_train)
-best_lr = lr_random.best_estimator_
-
-# 5. RandomizedSearchCV - Decision Tree
-dt_param_dist = {
-    'max_depth': randint(3, 20),
-    'min_samples_split': randint(2, 20),
-    'criterion': ['gini', 'entropy']
-}
-dt_random = RandomizedSearchCV(
-    estimator=DecisionTreeClassifier(random_state=42),
-    param_distributions=dt_param_dist,
-    n_iter=30,
-    scoring='f1',
-    cv=3,
-    verbose=1,
-    n_jobs=-1,
-    random_state=42
-)
-dt_random.fit(X_train, y_train)
-best_dt = dt_random.best_estimator_
-
-# 6. RandomizedSearchCV - XGBoost
-xgb_param_dist = {
-    'n_estimators': randint(50, 300),
-    'max_depth': randint(3, 15),
-    'learning_rate': uniform(0.01, 0.3),
-    'subsample': uniform(0.7, 0.3),
-    'colsample_bytree': uniform(0.7, 0.3)
-}
-xgb_random = RandomizedSearchCV(
-    estimator=XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42),
-    param_distributions=xgb_param_dist,
-    n_iter=30,
-    scoring='f1',
-    cv=3,
-    verbose=1,
-    n_jobs=-1,
-    random_state=42
-)
-xgb_random.fit(X_train, y_train)
-best_xgb = xgb_random.best_estimator_
-```
-![image](https://github.com/user-attachments/assets/f4610204-6c05-45a9-9fbe-74a4def9736b)
+   - Voting 방식: Soft Voting + 하이퍼파라미터 튜닝(RandomizedSearchCV)
+   → 모델별로 랜덤 탐색 기반 튜닝(RandomizedSearchCV) 후 soft voting으로 예측 확률 평균을 활용하여 예측.
+   ```python
+   # 4. RandomizedSearchCV - Logistic Regression
+   lr_param_dist = {
+       'C': uniform(0.01, 10),
+       'penalty': ['l2'],
+       'solver': ['lbfgs'],
+       'max_iter': [100, 300, 500, 1000]
+   }
+   lr_random = RandomizedSearchCV(
+       estimator=LogisticRegression(),
+       param_distributions=lr_param_dist,
+       n_iter=20,
+       scoring='f1',
+       cv=3,
+       verbose=1,
+       n_jobs=-1,
+       random_state=42
+   )
+   lr_random.fit(X_train, y_train)
+   best_lr = lr_random.best_estimator_
+   
+   # 5. RandomizedSearchCV - Decision Tree
+   dt_param_dist = {
+       'max_depth': randint(3, 20),
+       'min_samples_split': randint(2, 20),
+       'criterion': ['gini', 'entropy']
+   }
+   dt_random = RandomizedSearchCV(
+       estimator=DecisionTreeClassifier(random_state=42),
+       param_distributions=dt_param_dist,
+       n_iter=30,
+       scoring='f1',
+       cv=3,
+       verbose=1,
+       n_jobs=-1,
+       random_state=42
+   )
+   dt_random.fit(X_train, y_train)
+   best_dt = dt_random.best_estimator_
+   
+   # 6. RandomizedSearchCV - XGBoost
+   xgb_param_dist = {
+       'n_estimators': randint(50, 300),
+       'max_depth': randint(3, 15),
+       'learning_rate': uniform(0.01, 0.3),
+       'subsample': uniform(0.7, 0.3),
+       'colsample_bytree': uniform(0.7, 0.3)
+   }
+   xgb_random = RandomizedSearchCV(
+       estimator=XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42),
+       param_distributions=xgb_param_dist,
+       n_iter=30,
+       scoring='f1',
+       cv=3,
+       verbose=1,
+       n_jobs=-1,
+       random_state=42
+   )
+   xgb_random.fit(X_train, y_train)
+   best_xgb = xgb_random.best_estimator_
+   ```
+   ![image](https://github.com/user-attachments/assets/f4610204-6c05-45a9-9fbe-74a4def9736b)
 
 ### 4. 앙상블 + RandomizedSearchCV + LogisticRegression 정규화
 
-```python
-lr_pipeline = Pipeline([
-    ('scaler', StandardScaler()),
-    ('model', LogisticRegression())
-])
-lr_param_dist = {
-    'model__C': uniform(0.01, 10),
-    'model__penalty': ['l2'],
-    'model__solver': ['lbfgs'],
-    'model__max_iter': [100, 300, 500, 1000]
-}
-```
+   ```python
+   lr_pipeline = Pipeline([
+       ('scaler', StandardScaler()),
+       ('model', LogisticRegression())
+   ])
+   lr_param_dist = {
+       'model__C': uniform(0.01, 10),
+       'model__penalty': ['l2'],
+       'model__solver': ['lbfgs'],
+       'model__max_iter': [100, 300, 500, 1000]
+   }
+   ```
 ![image](https://github.com/user-attachments/assets/72e7d5b1-d06e-4c7b-a7fa-045eb5446f54)
-## 5. 🎯 하이퍼파라미터 튜닝
-- `GridSearchCV` (f1-score 기준)
-  - XGBClassifier, DecisionTreeClassifier
-- `RandomizedSearchCV` (넓은 범위 탐색)
-- 최적 파라미터 기반 재학습
 
-## 6. 📈 모델 평가 (최종)
+## 📈 모델 평가 (최종)
 - 학습 정확도 / 테스트 정확도
 - classification_report: Precision / Recall / F1-score
 - 오버피팅 여부 확인
 
 
-## 7. 💡 인사이트 및 결론
+## 💡 인사이트 및 결론
 - 이탈자의 주요 특성 요약
 - 가장 영향력 있는 변수 분석 (예: 점수 편차↑, 제출률↓, 지각률↑)
 - 이탈 위험군 조기 예측 가능성
 - 실무 적용 시나리오 제안
 - 
-## 8. 한줄 회고
+## 한줄 회고
 
 
 
