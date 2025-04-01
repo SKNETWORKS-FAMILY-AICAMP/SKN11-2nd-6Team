@@ -133,15 +133,16 @@
   - 각 학생의 평균 점수, 최고 점수, 최저 점수, 점수의 표준편차
     - 각 학생당 코스별 성적 편차 필요할까?
   - 점수 추세 (상승 또는 하락)
-  - 과제 난이도에 따른 가중 점수 -> 난이도 기준을 뭘로 잡아야하나?
- 
-##### my_average_score, my_max_score, my_min_score, my_score_std, my_score_trend, assesment_weight, weighted_score
+  - 과제 난이도에 따른 가중 점수 부여
 
-- my_avg_score : 개인 학업 성취도 수준 파악
-- my_max/min_score/my_score_std : 특정 과목 강점/약점 식별 및 극단적 편차 분석
-- my_score_trend	: 학습 효과성 평가 (지속적 상승=효율적 학습법, 하락=개입 필요)
-- weighted_score :	난이도 대비 성취도 → "B과제는 고난이도지만 고가중점수 → Distinct 학생" 
+#### 코스 관련 특성
+  - 코스별 평균 점수, 최고 점수, 최저 점수, 점수의 표준편차
+  - 코스별 과제 개수
 
+#### 행동 패턴 특성
+  - 과제 제출률
+  - 지각 제출 비율
+  - 과제별 제출 시간의 평균, 중앙값, 표준편차
 
 ## 4. StandardScaler 적용 (정규화)
 - 수치형 변수에 대해 표준화 또는 정규화 적용
