@@ -9,7 +9,7 @@
 
 |[@백미송](https://github.com/misong-hub)|[@김성지](https://github.com/kimseoungji0801)|[@이채은](https://github.com/chaeeunlee05)|[@이혜성](https://github.com/comet39)|[@홍성욱](https://github.com/Sung-WookHong)|
 |------|------|------|------|------|
-| <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/2dc83746-b3a4-45a8-96d3-36a458222cc1" width="200"/> | <img src="https://github.com/user-attachments/assets/14e4c4f8-80b6-41d9-befb-9e0c59b96443" width="200"/> | <img src="https://github.com/user-attachments/assets/da607129-b42f-4275-84cc-5e1379a6f749" width="200"/> |
+| <img src="https://github.com/user-attachments/assets/a1ac1e5d-1ebf-4a76-b415-60b718b26c8c" width="200"/> | <img src="https://github.com/user-attachments/assets/86a6b099-43f7-4b43-86f0-e0738ac5b7a0" width="200"/> | <img src="https://github.com/user-attachments/assets/6aa27c80-d308-4ed1-a3ee-526f17e149be" width="200"/> | <img src="https://github.com/user-attachments/assets/dbb903a4-d079-4671-b257-606920967396" width="200"/> | <img src="https://github.com/user-attachments/assets/a4554b6a-e7ef-44d2-9799-09cc7bb78402" width="200"/> |
 
 
 ---
@@ -159,8 +159,9 @@
 ![스크린샷 2025-04-01 130619](https://github.com/user-attachments/assets/676ca479-e52a-4f8a-a94f-4718dc98e213)   
 
 <br>
-  * 데이터가 수직 방향으로 무작위 분포를 보여, 변수 간에 뚜렷한 경향성이 없음을 시각적으로 확인할 수 있음
-  * 학생의 이탈 여부는 하나의 수치 변수로 설명하기 어렵고, **학생의 행동 기반 요인들은 불규칙하게 작용하여 예측에 복잡성을 더함**
+
+  * 데이터가 수직 방향으로 무작위 분포를 보여, 변수 간에 뚜렷한 경향성이 없음을 시각적으로 확인할 수 있음   
+  * 학생의 이탈 여부는 하나의 수치 변수로 설명하기 어렵고, **학생의 행동 기반 요인들은 불규칙하게 작용하여 예측에 복잡성을 더함**   
   * 트리 기반 분류 모델은 변수 간 상관관계가 낮더라도 효과적인 분류가 가능하므로, **통합적인 분석을 위해 학습 모델 활용이 적합함**
 
 ---
