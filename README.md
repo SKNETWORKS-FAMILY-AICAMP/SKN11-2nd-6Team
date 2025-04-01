@@ -56,15 +56,39 @@
 3. `courses.csv`: 개설된 각 강의(course)에 대한 정보 <br/>
 4. `studentInfo.csv` : 각 학생의 인구통계학적 정보와 수강 결과 <br/>
 5. `studentRegistration.csv`: 학생들의 수강 신청 및 이탈(취소) 정보 <br/>
-   
-    ↪️ **`merged_data.csv`** : 분석과 모델링에 필요한 주요 정보를 포함한 최종 분석용 데이터셋.  <br/>
-   -5개의 csv 파일을 `학생 ID(id_student)`, `과목 코드(code_module)`, `학기(code_presentation)`를 기준으로 병합 <br/>
-   ![image](https://github.com/user-attachments/assets/4628b792-cfee-41a1-8ace-aa20a437b605)
 
-   
-## 🎯 **타겟 변수**: **`수강취소여부`** 
-- Yes → 수강을 취소한 학생 (이탈)
-- No → 수강을 완료한 학생 (비이탈)
+### ↪️ 5개의 csv 파일을 `학생 ID(id_student)`, `과목 코드(code_module)`, `학기(code_presentation)`를 기준으로 병합 
+
+## **타겟 변수**: **`수강취소여부`** 
+- True → 수강을 취소한 학생 (이탈)
+- False → 수강을 완료한 학생 (비이탈)
+
+## 주요 특성
+| 컬럼명                     | 설명                                                                 |
+|----------------------------|----------------------------------------------------------------------|
+| gender                     | 학생의 성별 (남성, 여성)                                         |
+| highest_education          | 학생이 달성한 최고 교육 수준 (고등학교, 학사, 석사)           |
+| imd_band                   | 학생이 속한 지역의 사회경제적 지위 (IMD) |
+| age_band                   | 학생의 연령대 (예: '0-35', '35-55' 등)                                 |
+| num_of_prev_attempts       | 해당 과목을 이전에 시도한 횟수                                       |
+| studied_credits            | 학생이 현재까지 이수한 학점 수                                       |
+| disability                 | 장애 여부                                   |
+| final_result               | 최종 결과 (Pass, Fail, Withdrawn)                            |
+| date_registration          | 학생이 등록한 날짜                                                  |
+| module_presentation_length | 모듈(course)의 전체 길이                        |
+| my_average_score           | 학생의 평균 점수                                                    |
+| my_score_std               | 학생 점수의 표준편차                                                |
+| my_score_trend             | 학생 점수의 추세 (점수가 상승/하락하는 경향)                         |
+| assessment_weight          | 평가 항목의 가중치                                                  |
+| weighted_score             | 가중치를 적용한 점수                                                |
+| course_avg_score           | 해당 과목 전체 평균 점수                                            |
+| course_max_score           | 해당 과목에서 얻을 수 있는 최대 점수                                |
+| course_std_score           | 해당 과목 점수의 표준편차                                           |
+| course_late_rate           | 해당 과목에서 학생들의 늦은 제출 비율                               |
+| days_early_submission      | 학생이 과제를 얼마나 일찍 제출했는지                  |
+| my_late_rate               | 학생 개인의 늦은 제출 비율                                          |
+
+
 
 ---
 
@@ -74,49 +98,27 @@
 
 ### `date`
 
-- 대부분 `assessment_type = "Exam"`에 해당
-- 시험은 일반적으로 강의 종료일에 시행됨
-→ `module_presentation_length`를 활용해 **강의 마지막 날짜로 채움**
+- `assessment_type = "Exam"` → `module_presentation_length`를 활용해 **강의 마지막 날짜로 채움**
 
 
-### `score`
+### `score`, `imd_band`
 
-- 총 173건 결측
-    - `Withdrawn`(이탈자): 72개
-    - `Pass`, `Fail`, `Distinction`(수료자): 101개
-- 과제를 제출했는데도 점수가 없는 경우로 추정… 수가 적으므로 **삭제 처리**
-
-### `imd_band`
-
-- 총 7697건 결측
-- 전체 28,785명 중 약 **971명**의 `imd_band`(지역 기반 사회경제 수준 지표)가 없음
-- 'imd_band' 컬럼에서 결측치가 있는 행을 삭제
+- 전체 데이터 대비 결측치 수가 적으므로 **삭제 처리**
 
 
 ### `date_unregistration`
 
 - 결측치 160,857건
 - 해당 컬럼은 **"언제 수강을 중도 이탈했는가"**를 의미
-- - 수강 등록일이 없는 7건 → **삭제**
 → **결측 = 중도 이탈하지 않은 수료자**
-→ 즉, 의미 있는 결측이므로 **삭제하지 않음** → 인코딩 과정에서 결측치를 처리 한다!!!
 
-### `final_result 이상치 처리 코드`
+### `final_result 이상치 처리`
 
-<img src="https://github.com/user-attachments/assets/82e61b3a-c481-4d34-8b4d-d228749b24b0" style="display: inline; margin-right: 10px;">
+````
+df = df.drop(df[(df['final_result'] == 'Fail') & (df['date_unregistration'] >= 0)].index)
+````
 
-
-- **`date_unregistration`**: 이 필드는 학생이 온라인 학습을 이탈한 날짜를 나타냅니다. 학생이 학습을 중단하거나 수업을 탈퇴한 시점을 추적할 수 있습니다.
-
-- **`final_result`**: 이 필드는 학생의 최종 성적 결과를 나타냅니다. 다만, **`date_unregistration`**이 존재하는 경우(즉, 학생이 온라인 학습을 이탈한 경우), 해당 학생은 **`Fail`** 상태로 결과가 나오지 않도록 처리되었습니다. 이유는 학습 이탈이 성적에 영향을 미치므로, 이탈 학생에게는 `Fail` 값을 부여할 수 없기 때문입니다.
-
-### 처리 방식
-
-- **학습 이탈**: `date_unregistration` 값이 존재하는 학생은 학습을 중단한 것으로 간주되며, 이들은 더 이상 학습을 지속하지 않으므로 **`Fail`** 상태로 처리될 수 없습니다.
-  
-- **이탈 학생 제외**: `final_result` 값이 `Fail`로 설정될 수 없는 이유는, `date_unregistration`에 의해 이미 이탈한 학생은 성적이 `Fail`로 기록되지 않기 때문입니다.
-
-따라서, **`date_unregistration`** 값이 존재하는 학생은 `final_result` 값이 **`Fail`** 이 아니도록 예외 처리가 이루어집니다.
+- **`final_result`** 는 학생의 최종 성적 결과를 나타냅니다. **`date_unregistration`** 이 존재하는 경우(즉, 학생이 이탈한 경우), 해당 학생은 **`Fail`** 상태로 결과가 나올 수 없으므로 이상치라고 판단하여 drop
 
 
 
