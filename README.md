@@ -141,36 +141,15 @@
 | days_early_submission      | 마감일 기준으로 과제를 조기 제출한 일 수                            |
 | my_late_rate               | 해당 학생의 전체 과제 중 지각 제출한 과제 비율                       |
 
----
-
-# 📊 탐색적 데이터 분석 (EDA)
-
-### 변수별 행동 분석 시각화: `과제 점수 비중 assessment_weight` (예시)
-![스크린샷 2025-04-01 130619](https://github.com/user-attachments/assets/676ca479-e52a-4f8a-a94f-4718dc98e213)
-
-- 데이터가 수직적으로 랜덤하게 분포해 있어, 의미 있는 경향성이 없다는 것을 시각적으로 확인 가능
-- assessment_weight 분포는 Dropout 여부(0 vs 1)에 상관없이 유사
-
-- 학생의 이탈 여부는 단일 수치 변수로 설명되지 않으며, **학생의 행동 기반 요인들은 매우 랜덤하게 작용함.**
-- 본 데이터셋 내 다른 변수들과 마찬가지로 **단편적인 변수만으로 이탈을 예측하는 데 한계가 있음**을 시사하며, 보다 **복합적인 요인들의 통합 분석이 필요함.**
-
-
-
-### 개인정보 여부에 따른 수강 이탈자 비율 (Withdrawn)
-
-1. **Gender (성별)**: 성별에 따른 "withdrawn" 상태의 비율
-2. **Age Band (연령대)**: 연령대별로 "withdrawn" 상태의 비율
-3. **Disability (장애 여부)**: 장애 여부에 따른 "withdrawn" 상태의 비율
-4. **Highest Education (최고 학력)**: 최고 학력에 따른 "withdrawn" 상태의 비율
-
-![image](https://github.com/user-attachments/assets/874691a0-828d-4dff-bbb7-257ee95a6180)
-![image](https://github.com/user-attachments/assets/aa93f506-ff12-44ac-97d9-533cd873c72d)
+<br>
+<br>
 
 
 ## 히트맵(상관행렬)을 분석
 
 - 히트맵(상관행렬)을 분석했을 때, 특정 변수들 간의 선형적 상관관계(피어슨 상관계수)가 낮게 나왔지만, 여전히 타겟 변수와의 관계가 존재할 가능성이 있으면 비선형 상호작용을 탐색을 하기로 함
 ![image](https://github.com/user-attachments/assets/178ab026-38cf-4d00-a9b9-199194607474)
+
 ## 비선형 데이터 특성 중요도 분석 기법
 ### 1. Spearman 상관계수 시각화
 - 비선형 관계를 가진 변수 간 순위 기반 상관성을 측정
@@ -179,21 +158,17 @@
 
 
 
-### 2. RandomForestClassifier를 특성 중요도 시각화
-- 여러 개의 결정 트리를 만들어 데이터를 학습하고, 각 특성이 예측에 얼마나 기여했는지를 계산
-
-![image](https://github.com/user-attachments/assets/5f5630e5-976b-479d-ab11-7cbe441c790f)
 
 
-### 3. Kendall 상관계수 시각화
-- 두 변수 간의 순위가 얼마나 일치하는지를 측정
 
-![](img/kendal.png)
+### 변수별 행동 분석 시각화: 과제 점수 비중 `assessment_weight`
+![스크린샷 2025-04-01 130619](https://github.com/user-attachments/assets/676ca479-e52a-4f8a-a94f-4718dc98e213)
 
-### 4. GradientBoostingClassifier를 통한 특성 중요도 시각화
-- 특성 간의 복잡한 관계를 학습하며, 어떤 특성이 중요한지를 계산
+- 데이터가 수직적으로 랜덤하게 분포해 있어, 의미 있는 경향성이 없다는 것을 시각적으로 확인 가능
+- assessment_weight 분포는 Dropout 여부(0 vs 1)에 상관없이 유사
 
-![](img/GBC_top.png)
+- 학생의 이탈 여부는 단일 수치 변수로 설명되지 않으며, **학생의 행동 기반 요인들은 매우 랜덤하게 작용함.**
+- 본 데이터셋 내 다른 변수들과 마찬가지로 **단편적인 변수만으로 이탈을 예측하는 데 한계가 있음**을 시사하며, 보다 **복합적인 요인들의 통합 분석이 필요함.**
 
 ---
 
@@ -546,6 +521,19 @@ weighted avg       0.82      0.81      0.81       422
 - 학습 정확도 / 테스트 정확도
 - classification_report: Precision / Recall / F1-score
 - 오버피팅 여부 확인
+
+
+## 4. 학생 정보 기반 맞춤형 교육과정 설계
+
+### 개인정보 여부에 따른 수강 이탈자 비율 (Withdrawn)
+
+1. **Gender (성별)**: 성별에 따른 "withdrawn" 상태의 비율
+2. **Age Band (연령대)**: 연령대별로 "withdrawn" 상태의 비율
+3. **Disability (장애 여부)**: 장애 여부에 따른 "withdrawn" 상태의 비율
+4. **Highest Education (최고 학력)**: 최고 학력에 따른 "withdrawn" 상태의 비율
+
+![image](https://github.com/user-attachments/assets/874691a0-828d-4dff-bbb7-257ee95a6180)
+![image](https://github.com/user-attachments/assets/aa93f506-ff12-44ac-97d9-533cd873c72d)
 
 
 ## 💡 인사이트 및 결론
