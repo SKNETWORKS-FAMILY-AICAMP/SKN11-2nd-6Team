@@ -1,4 +1,4 @@
-# 🎓 대학교 수강 이탈 예측 모델링
+# 🎓 대학교 수강 이탈 예측
 
 # 🔍 프로젝트 개요
 
@@ -534,7 +534,10 @@ weighted avg       0.82      0.81      0.81       422
    ```
 ![image](https://github.com/user-attachments/assets/72e7d5b1-d06e-4c7b-a7fa-045eb5446f54)
 
-## 📈 모델 평가 (최종)
+## 📈 모델 평가 (최종) - 각 모델별 예측값 비교 (랜덤 샘플 15개)
+![output](https://github.com/user-attachments/assets/ae6858e2-c59e-4c1f-873a-cc3f8389164d)
+
+
 - 학습 정확도 / 테스트 정확도
 - classification_report: Precision / Recall / F1-score
 - 오버피팅 여부 확인
