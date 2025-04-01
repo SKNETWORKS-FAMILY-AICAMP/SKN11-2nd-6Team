@@ -10,11 +10,10 @@
 |------|------|------|------|------|
 | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/2dc83746-b3a4-45a8-96d3-36a458222cc1" width="200"/> | <img src="https://github.com/user-attachments/assets/14e4c4f8-80b6-41d9-befb-9e0c59b96443" width="200"/> | <img src="https://github.com/user-attachments/assets/da607129-b42f-4275-84cc-5e1379a6f749" width="200"/> |
 
-# 목차 
 
-## 1. 🔍 프로젝트 개요
+# 1. 🔍 프로젝트 개요
 
-# 📅 개발 기간
+## 📅 개발 기간
 **2025년 3월 31일** ~ **2025년 4월 1일**
 
 
