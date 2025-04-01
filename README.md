@@ -161,12 +161,14 @@ df = df.drop(df[(df['final_result'] == 'Fail') & (df['date_unregistration'] >= 0
 ### 1. Spearman 상관계수 시각화
 - 비선형 관계를 가진 변수 간 순위 기반 상관성을 측정
 
-![image](https://github.com/user-attachments/assets/7c3e3d08-a376-457f-b151-7f8d12368684)
+![image](https://github.com/user-attachments/assets/178ab026-38cf-4d00-a9b9-199194607474)
+
 
 ### 2. RandomForestClassifier를 특성 중요도 시각화
 - 여러 개의 결정 트리를 만들어 데이터를 학습하고, 각 특성이 예측에 얼마나 기여했는지를 계산
 
-![](img/RFCtop.png)
+![image](https://github.com/user-attachments/assets/5f5630e5-976b-479d-ab11-7cbe441c790f)
+
 
 ### 3. Kendall 상관계수 시각화
 - 두 변수 간의 순위가 얼마나 일치하는지를 측정
