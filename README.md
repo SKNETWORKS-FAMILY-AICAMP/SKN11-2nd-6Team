@@ -67,9 +67,9 @@
 4. `studentInfo.csv` : 각 학생의 인구통계학적 정보와 수강 결과 <br/>
 5. `studentRegistration.csv`: 학생들의 수강 신청 및 이탈(취소) 정보 <br/>
 
-### ↪️ 5개의 csv 파일을 `학생 ID(id_student)`, `과목 코드(code_module)`, `학기(code_presentation)`를 기준으로 병합 
+### ↪️ 5개의 csv 파일을 *학생 ID(id_student)*, *과목 코드(code_module)*, *학기(code_presentation)* 를 기준으로 병합 
 
-## **타겟 변수**: **`수강취소여부`** 
+## **타겟 변수** 👉 **`수강취소여부`** 
 - True → 수강을 취소한 학생 (이탈)
 - False → 수강을 완료한 학생 (비이탈)
 
@@ -104,7 +104,7 @@
 
 # 🧹 데이터 전처리(Data Preprocessing)
 
-## 1. 결측치 처리
+## 1. 결측치 및 이상치 처리
 
 ### `date`
 
