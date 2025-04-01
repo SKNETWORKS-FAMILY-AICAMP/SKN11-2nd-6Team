@@ -367,12 +367,6 @@
 
 ![](img/clustering.png)
 
-#### 각 클러스터별 특징 중요도 분석
-![](img/cluster1_feature.png)
-![](img/cluster0_feature.png)
-![](img/cluster2_feature.png)
-![](img/cluster4_feature.png)
-
 #### 클러스터 별 모델 학습
 ````
 🚀 클러스터 4 모델 학습 시작...
