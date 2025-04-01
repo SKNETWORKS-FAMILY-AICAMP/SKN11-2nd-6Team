@@ -174,7 +174,7 @@ y_pred = voting_clf.predict(X_test_scaled)
 smote=SMOTE(random_state=42)
 X_resample,y_resample = smote.fit_resample(X_train_scaled,y_train)
 ```
-  ![image](https://github.com/user-attachments/assets/40a2a50a-11a4-4547-8c21-fedd36202885)
+  ![image](https://github.com/user-attachments/assets/8626ee39-ce18-4a18-a17c-3b2e0d9d26e8)
 - recall이 0.28 → 0.52로 크게 상승 → **이탈자를 훨씬 더 많이 잡아냄.**
 - precision은 줄었지만 이는 이탈자 예측을 더 시도했기 때문에 자연스러운 현상.
 - f1-score도 올라서 **균형 잡힌 예측 성능 향상.**
