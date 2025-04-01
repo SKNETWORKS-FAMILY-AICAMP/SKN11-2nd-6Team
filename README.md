@@ -546,7 +546,7 @@ for idx, row in df[df['final_result'] == 1].iterrows():
 ```
 
 ![](img/id_21)
-  * 'modified_course_avg_score': np.float64(40.0), 'modified_course_max_score': np.float64(88.5), 'modified_course_std_score': np.float64(5.0)
+  * 'modified_course_max_score': np.float64(88.5), 'modified_course_std_score': np.float64(5.0)
 
 
 
