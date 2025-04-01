@@ -173,15 +173,27 @@ df = df.drop(df[(df['final_result'] == 'Fail') & (df['date_unregistration'] >= 0
 - 본 데이터셋 내 다른 변수들과 마찬가지로 **단편적인 변수만으로 이탈을 예측하는 데 한계가 있음**을 시사하며, 보다 **복합적인 요인들의 통합 분석이 필요함.**
 
 
+
+### 수강이탈자 시각화(withdrawn)
+1. **Gender (성별)**: 성별에 따른 "withdrawn" 상태의 비율
+2. **IMD Band (IMD 지표)**: 경제 상태의 따른 "withdrawn" 비율
+3. **Age Band (연령대)**: 연령대별로 "withdrawn" 상태의 비율
+4. **Disability (장애 여부)**: 장애 여부에 따른 "withdrawn" 상태의 비율
+5. **Highest Education (최고 학력)**: 최고 학력에 따른 "withdrawn" 상태의 비율
+
+![image](https://github.com/user-attachments/assets/874691a0-828d-4dff-bbb7-257ee95a6180)
+
+
 ## 히트맵(상관행렬)을 분석
 
 - 히트맵(상관행렬)을 분석했을 때, 특정 변수들 간의 선형적 상관관계(피어슨 상관계수)가 낮게 나왔지만, 여전히 타겟 변수와의 관계가 존재할 가능성이 있으면 비선형 상호작용을 탐색을 하기로 함
-
+![image](https://github.com/user-attachments/assets/178ab026-38cf-4d00-a9b9-199194607474)
 ## 비선형 데이터 특성 중요도 분석 기법
 ### 1. Spearman 상관계수 시각화
 - 비선형 관계를 가진 변수 간 순위 기반 상관성을 측정
 
-![image](https://github.com/user-attachments/assets/178ab026-38cf-4d00-a9b9-199194607474)
+![image](https://github.com/user-attachments/assets/a6e90f34-9fd3-4c24-bb93-406e84c1d3aa)
+
 
 
 ### 2. RandomForestClassifier를 특성 중요도 시각화
