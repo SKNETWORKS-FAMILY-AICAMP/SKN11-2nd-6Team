@@ -177,12 +177,12 @@ df = df.drop(df[(df['final_result'] == 'Fail') & (df['date_unregistration'] >= 0
 ### 개인정보 여부에 따른 수강 이탈자 비율 (Withdrawn)
 
 1. **Gender (성별)**: 성별에 따른 "withdrawn" 상태의 비율
-2. **IMD Band (IMD 지표)**: 경제 상태의 따른 "withdrawn" 비율
-3. **Age Band (연령대)**: 연령대별로 "withdrawn" 상태의 비율
-4. **Disability (장애 여부)**: 장애 여부에 따른 "withdrawn" 상태의 비율
-5. **Highest Education (최고 학력)**: 최고 학력에 따른 "withdrawn" 상태의 비율
+2. **Age Band (연령대)**: 연령대별로 "withdrawn" 상태의 비율
+3. **Disability (장애 여부)**: 장애 여부에 따른 "withdrawn" 상태의 비율
+4. **Highest Education (최고 학력)**: 최고 학력에 따른 "withdrawn" 상태의 비율
 
 ![image](https://github.com/user-attachments/assets/874691a0-828d-4dff-bbb7-257ee95a6180)
+![image](https://github.com/user-attachments/assets/aa93f506-ff12-44ac-97d9-533cd873c72d)
 
 
 ## 히트맵(상관행렬)을 분석
