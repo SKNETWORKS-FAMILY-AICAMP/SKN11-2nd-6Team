@@ -174,7 +174,8 @@ df = df.drop(df[(df['final_result'] == 'Fail') & (df['date_unregistration'] >= 0
 
 
 
-### 수강이탈자 시각화(withdrawn)
+### 개인정보 여부에 따른 수강 이탈자 비율 (Withdrawn)
+
 1. **Gender (성별)**: 성별에 따른 "withdrawn" 상태의 비율
 2. **IMD Band (IMD 지표)**: 경제 상태의 따른 "withdrawn" 비율
 3. **Age Band (연령대)**: 연령대별로 "withdrawn" 상태의 비율
