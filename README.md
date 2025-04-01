@@ -36,11 +36,21 @@
 
 ## 🔧 기술 스택
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white" style="display: inline-block; margin: 5px;">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=&logoColor=white" style="display: inline-block; margin: 5px;">
+
+## 데이터 분석
+<p align="">
   <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" style="display: inline-block; margin: 5px;">
   <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=NumPy&logoColor=white" style="display: inline-block; margin: 5px;">
+  <img src="https://img.shields.io/badge/scikitlearn-0FAAFF?style=for-the-badge&logo=&logoColor=white" style="display: inline-block; margin: 5px;">
 </p>
+
+## 시각화
+<p align="">
+  <img src="https://img.shields.io/badge/Matplotlib-E95420?style=for-the-badge&logo=&logoColor=white" style="display: inline-block; margin: 5px;">
+  <img src="https://img.shields.io/badge/Seaborn-6D00CC?style=for-the-badge&logo=&logoColor=white" style="display: inline-block; margin: 5px;">
+</p>
+
 
 ---
 
@@ -214,6 +224,13 @@ df = df.drop(df[(df['final_result'] == 'Fail') & (df['date_unregistration'] >= 0
    
    ### ⬇️ 언더샘플링
    - 클래스 불균형 처리: **언더샘플링**으로 **이탈자 수(1)** 에 맞춰 비이탈자 수 조정
+ 
+     ![image](https://github.com/user-attachments/assets/75e3c05c-d535-4de5-92af-4f6fe19beb53)
+    - Recall이 0.28 → 0.87로 크게 상승 **이탈자를 훨씬 더 잘 잡아냄 (실제 이탈자 중 예측된 비율이 상승)** <br/>
+    - Precision은 감소했지만 자연스러운 현상 <br/>
+    - F1-score는 약간 하락했지만, 전체적인 목표가 **‘이탈자를 놓치지 않는 것’** 이라면 매우 유의미한 개선 <br/>
+    - Accuracy는 줄었지만 이는 클래스 불균형 완화로 인한 변화 → 전체 정확도보다 이탈자 예측 성능이 더 중요한 상황에서는 좋은 방향 <br/>
+
 
   ### 결론
   - 언더샘플링 기법을 통해 클래스 불균형 문제를 해결 하는 것이 모델 성능 향상율이 높으므로 앞으로의 모델 학습에 언더샘플링 기법을 사용합니다.
