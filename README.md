@@ -153,8 +153,30 @@
 
 # 📊 탐색적 데이터 분석 (EDA)
 
-### 특성 중요도
+## 히트맵(상관행렬)을 분석
+
+- 히트맵(상관행렬)을 분석했을 때, 특정 변수들 간의 선형적 상관관계(피어슨 상관계수)가 낮게 나왔지만, 여전히 타겟 변수와의 관계가 존재할 가능성이 있으면 비선형 상호작용을 탐색을 하기로 함
+
+## 비선형 데이터 특성 중요도 분석 기법
+### 1. Spearman 상관계수 시각화
+- 비선형 관계를 가진 변수 간 순위 기반 상관성을 측정
+
 ![image](https://github.com/user-attachments/assets/7c3e3d08-a376-457f-b151-7f8d12368684)
+
+### 2. RandomForestClassifier를 특성 중요도 시각화
+- 여러 개의 결정 트리를 만들어 데이터를 학습하고, 각 특성이 예측에 얼마나 기여했는지를 계산
+
+![](img/RFCtop.png)
+
+### 3. Kendall 상관계수 시각화
+- 두 변수 간의 순위가 얼마나 일치하는지를 측정
+
+![](img/kendal.png)
+
+### 4. GradientBoostingClassifier를 통한 특성 중요도 시각화
+- 특성 간의 복잡한 관계를 학습하며, 어떤 특성이 중요한지를 계산
+
+![](img/GBCtop.png)
 
 ---
 
@@ -180,14 +202,9 @@
 
    ### ⬆️ 오버샘플링
    - 클래스 불균형 처리: SMOTE를 통해 **이탈자 수(1)** 를 오버샘플링하여 균형 잡힌 학습 데이터셋 구성
-   - 정규화: StandardScaler를 이용해 모든 특성값을 표준 정규분포(평균=0, 표준편차=1)로 변환
-   - Train/Test Split: train_test_split()을 사용하여 8:2 비율, stratify 옵션으로 이탈 여부 비율 유지하며 데이터 분할<br/>
-      ※ Pipeline을 활용해 SMOTE 적용 → 모델 학습을 일괄 처리하여 코드 재사용성과 확장성 향상
-   ```python
-   smote=SMOTE(random_state=42)
-   X_resample,y_resample = smote.fit_resample(X_train_scaled,y_train)
-   ```
+     
      ![image](https://github.com/user-attachments/assets/8626ee39-ce18-4a18-a17c-3b2e0d9d26e8)
+   
    - recall이 0.28 → 0.52로 크게 상승 → **이탈자를 훨씬 더 많이 잡아냄.**
    - precision은 줄었지만 이는 이탈자 예측을 더 시도했기 때문에 자연스러운 현상.
    - f1-score도 올라서 **균형 잡힌 예측 성능 향상.**
@@ -195,8 +212,6 @@
    
    ### ⬇️ 언더샘플링
    - 클래스 불균형 처리: **언더샘플링**으로 **이탈자 수(1)** 에 맞춰 비이탈자 수 조정
-   - 원핫 인코딩: 범주형 변수 변환
-   - Train/Test Split: train_test_split() 사용하여 **8:2 비율**로 분할
 
 ### 2. 클러스터 기반 분류 모델
 
