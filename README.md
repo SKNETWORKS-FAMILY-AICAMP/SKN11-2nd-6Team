@@ -1,6 +1,5 @@
-# 🎓 대학교 수강 이탈 예측
-
-# 🔍 프로젝트 개요
+**📅개발 기간: 2025.03.31 ~ 2025.04.01**
+# 🎓 대학교 수강 이탈 예측 모델링
 
 ## 🏃‍♂️ 팀원 소개
 - **SK 네트웍스 Family AI 캠프 11기**
@@ -12,27 +11,8 @@
 |------|------|------|------|------|
 | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/108ea96c-cb56-42fc-90cb-0d2c833c0fd2" width="200"/> | <img src="https://github.com/user-attachments/assets/2dc83746-b3a4-45a8-96d3-36a458222cc1" width="200"/> | <img src="https://github.com/user-attachments/assets/14e4c4f8-80b6-41d9-befb-9e0c59b96443" width="200"/> | <img src="https://github.com/user-attachments/assets/da607129-b42f-4275-84cc-5e1379a6f749" width="200"/> |
 
-## 📅 개발 기간
-**2025년 3월 31일** ~ **2025년 4월 1일**
 
-
-## 📌 프로젝트 목표
-- 대학교 수강생들의 이탈(수강 취소) 여부를 조기 예측하여 학습 지원 및 개입 방안 마련<br/>
-- 학생들의 과제 제출 패턴 및 성적 특성을 분석하여 이탈 징후를 파악<br/>
-- 머신러닝 모델을 통해 이탈 위험군을 사전에 식별하고 예측 성능을 극대화<br/>
-
-## 🌟 기대 효과
-- 이탈 가능성 높은 학생을 조기에 파악함으로써 맞춤형 학습 지원 제공 가능<br/>
-- 교육 기관의 학업 성공률 및 수료율 향상<br/>
-- *과제 기반 행동 데이터만으로도 충분한 예측 성능을 확보함으로써 효율적인 데이터 수집 및 분석 체계 구축 가능*<br/>
-
-## 🛠️ **접근 방식**
-- Open University의 실제 데이터셋(OULAD) 활용
-- 과제 제출율, 과제 점수 분위수, 평균 성적 Z-점수 등을 주요 피처로 활용
-- 수강생의 이탈 여부(Withdrawn) 를 타겟 변수로 설정
-- 데이터 전처리 및 피처 엔지니어링을 통해 날짜 정보, 제출 시기, 등록 시기 등을 범주화하여 반영
-- Logistic Regression, Random Forest 등의 분류 모델을 적용
--최종적으로 모델 성능을 평가하고 이탈 예측에 가장 영향력 있는 변수 분석
+---
 
 ## 🔧 기술 스택
 
@@ -51,60 +31,78 @@
   <img src="https://img.shields.io/badge/Seaborn-6D00CC?style=for-the-badge&logo=&logoColor=white" style="display: inline-block; margin: 5px;">
 </p>
 
+---
+
+## 목차   
+1. 프로젝트 개요   
+    1) 프로젝트 목표   
+    2) 데이터셋 
+2. 탐색적 데이터 분석 (EDA)   
+    1)    
+3. 학생 이탈 예측 모델 학습   
+    1)   
+4. 학생 정보 기반 맞춤형 교육과정 설계
+5. Appendix
+   
+<br>
 
 ---
 
-# 📂 데이터셋
-[Open University Learning Analytics Dataset (OULAD)](https://analyse.kmi.open.ac.uk/#open-dataset) <br/>
-오픈 유니버시티(Open University)에서 공개한 영국 Open University 학생들의 **온라인 학습 행동 및 이탈 관련 데이터셋**.<br/>
-학습자의 활동, 평가 성적, 이탈 여부 등 **교육 분석(learning analytics)** 연구에 유용하게 쓰이는 대표적인 공개 데이터
+## 1. 🔍 프로젝트 개요
+### 1) 📌 프로젝트 목표
+ * Open University의 실제 데이터셋을 활용하여 수강 철회 결정에 영향을 미치는 주요 요인 분석
+ * 수업 난이도, 학생의 기본 정보, 과제 제출 패턴 등을 종합적으로 분석해 수강 철회 확률 예측
+ * 신규 수강생의 데이터를 기반으로 수강 철회 가능성을 조기에 예측하고, 맞춤형 교육과정 설계방안 제시
 
-## 데이터 구성 (5개의 CSV 파일)
+### 2) 📂 데이터셋    
+ * 데이터 개요   
+   영국 Open University에서 공개한 대표적인 공개 데이터: [Open University Learning Analytics Dataset (OULAD)](https://analyse.kmi.open.ac.uk/#open-dataset)
+ * 데이터 구성
+    1. `assessments.csv` : 각 강의에서 제공되는 과제 및 평가 관련 세부 정보 <br/>
+    2. `courses.csv`: 개설된 각 강의의 식별자, 강의명 등 강의 기본 정보 <br/>
+    3. `studentAssessment.csv`: 학생들의 과제 제출 이력과 성적 데이터를 포함한 학습 성과 정보 <br/>
+    4. `studentInfo.csv` : 각 학생의 인구통계학적 특성(성별, 연령, 최종 학력 등) <br/>
+    5. `studentRegistration.csv`: 학생들의 수강 신청 내역과 각 강의에 대한 철회 여부 <br/>
+ * 5개의 csv 파일을 `학생 ID(id_student)`, `과목 코드(code_module)`, `학기(code_presentation)`를 기준으로 병합
+ * 최종 병합된 데이터에 포함된 컬럼  cf.) [제거된 컬럼 명 확인](#불필요한-컬럼-제거)    
+표 1.1 원본 데이터에 포함된 주요 컬럼 항목
 
-1. `assessments.csv` : 각 강의의 과제(평가) 관련 정보 <br/>
-2. `studentAssessment.csv`: 학생들의 과제 제출 및 성적 정보 <br/>
-3. `courses.csv`: 개설된 각 강의(course)에 대한 정보 <br/>
-4. `studentInfo.csv` : 각 학생의 인구통계학적 정보와 수강 결과 <br/>
-5. `studentRegistration.csv`: 학생들의 수강 신청 및 이탈(취소) 정보 <br/>
+| 컬럼명                     | 설명                                                               |
+|----------------------------|-------------------------------------------------------------------|
+| gender                     | 학생의 성별 (남성, 여성)                                           |
+| highest_education          | 학생의 최고 학력 수준 (고등학교, 학사, 석사)                       |
+| imd_band                   | 학생이 속한 지역의 사회경제적 지위                                 |
+| age_band                   | 학생의 연령대                                                     |
+| disability                 | 학생의 장애 여부                                                  |
+| studied_credits            | 학생이 현재까지 이수한 학점 수                                    |
+| num_of_prev_attempts       | 해당 과목의 과거 수강 이력 횟수                                   |
+| date_registration          | 학생이 등록한 날짜                                               |
+| module_presentation_length | 강의의 전체 길이                                                 |
+| assessment_weight          | 각 평가 항목이 성적에 미치는 비중                                 |
+| final_result               | 최종 결과 (Pass, Fail, Withdrawn)                                |
 
-### ↪️ 5개의 csv 파일을 *학생 ID(id_student)*, *과목 코드(code_module)*, *학기(code_presentation)* 를 기준으로 병합 
+<br>
+<br>
 
-## **타겟 변수** 👉 **`수강취소여부`** 
-- True → 수강을 취소한 학생 (이탈)
-- False → 수강을 완료한 학생 (비이탈)
-
-## 주요 특성
+표 1.2 초기 데이터 컬럼을 기반으로 계산된 신규 컬럼 항목    
 | 컬럼명                     | 설명                                                                 |
 |----------------------------|----------------------------------------------------------------------|
-| gender                     | 학생의 성별 (남성, 여성)                                         |
-| highest_education          | 학생이 달성한 최고 교육 수준 (고등학교, 학사, 석사)           |
-| imd_band                   | 학생이 속한 지역의 사회경제적 지위 (IMD) |
-| age_band                   | 학생의 연령대 (예: '0-35', '35-55' 등)                                 |
-| num_of_prev_attempts       | 해당 과목을 이전에 시도한 횟수                                       |
-| studied_credits            | 학생이 현재까지 이수한 학점 수                                       |
-| disability                 | 장애 여부                                   |
-| final_result               | 최종 결과 (Pass, Fail, Withdrawn)                            |
-| date_registration          | 학생이 등록한 날짜                                                  |
-| module_presentation_length | 모듈(course)의 전체 길이                        |
-| my_average_score           | 학생의 평균 점수                                                    |
-| my_score_std               | 학생 점수의 표준편차                                                |
-| my_score_trend             | 학생 점수의 추세 (점수가 상승/하락하는 경향)                         |
-| assessment_weight          | 평가 항목의 가중치                                                  |
-| weighted_score             | 가중치를 적용한 점수                                                |
-| course_avg_score           | 해당 과목 전체 평균 점수                                            |
-| course_max_score           | 해당 과목에서 얻을 수 있는 최대 점수                                |
-| course_std_score           | 해당 과목 점수의 표준편차                                           |
-| course_late_rate           | 해당 과목에서 학생들의 늦은 제출 비율                               |
-| days_early_submission      | 학생이 과제를 얼마나 일찍 제출했는지                  |
-| my_late_rate               | 학생 개인의 늦은 제출 비율                                          |
+| my_average_score           | 특정 학생의 평균 점수                                               |
+| my_score_std               | 특정 학생의 점수 표준편차                                           |
+| my_score_trend             | 특정 학생 점수의 변화 추이 (상승, 하락)                             |
+| weighted_score             | 평가 가중치를 반영한 환산 점수                                      |
+| course_avg_score           | 특정 과목 수강생들의 평균 점수                                      |
+| course_max_score           | 특정 과목 수강생 중 최고 점수                                       |
+| course_std_score           | 특정 과목 수강생들의 점수 표준편차                                  |
+| course_late_rate           | 해당 과목에서 전체 학생의 지각 제출 비율                            |
+| days_early_submission      | 마감일 기준으로 과제를 조기 제출한 일 수                            |
+| my_late_rate               | 해당 학생의 전체 과제 중 지각 제출한 과제 비율                       |
 
+<br>
 
+## 2. 📊 탐색적 데이터 분석 (EDA)
 
----
-
-# 🧹 데이터 전처리(Data Preprocessing)
-
-## 1. 결측치 및 이상치 처리
+## 1) 결측치 및 이상치 처리
 
 ### `date`
 
@@ -571,8 +569,44 @@ weighted avg       0.82      0.81      0.81       422
 - 가장 영향력 있는 변수 분석 (예: 점수 편차↑, 제출률↓, 지각률↑)
 - 이탈 위험군 조기 예측 가능성
 - 실무 적용 시나리오 제안
+
+## 🌟 기대 효과
+- 이탈 가능성 높은 학생을 조기에 파악함으로써 맞춤형 학습 지원 제공 가능<br/>
+- 교육 기관의 학업 성공률 및 수료율 향상<br/>
+- *과제 기반 행동 데이터만으로도 충분한 예측 성능을 확보함으로써 효율적인 데이터 수집 및 분석 체계 구축 가능*<br/>
+
+
 - 
 ## 한줄 회고
+
+
+
+## 5. Appendix
+
+#### 불필요한 컬럼 제거   
+   - 분석에 불필요하거나 중복되는 정보를 가진 열 제거   
+![image](https://github.com/user-attachments/assets/6bfea0d2-d3ab-43d1-ae69-88ef89b54229)
+
+
+
+
+
+
+
+<p align="center">
+  <img src="./readme_image/언어의 연관성.jpg" height="450" width="450">
+</p>
+
+<div align="center">
+  그림 1.1 언어 데이터가 가지는 단어간 상호관계 예시
+</div>
+<br>
+  
+* 단어 빈도 속성: K-means 클러스터링<sup>*</sup>을 활용하여 48개의 속성을 5개의 그룹으로 구분
+* 군집화된 단어들을 시각화하기 위해 주성분 분석 (PCA)<sup>**</sup>으로 데이터 속성을 2개로 축소 후 산점도(scatter) 그래프 작성
+  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>*</sup>K-means 클러스터링: 데이터를 K개의 군집으로 나누어 중심점을 기준으로 반복적으로 최적화  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>**</sup>주성분 분석 (PCA): 고차원 데이터를 저차원으로 변환하여 주요 정보만 보존
 
 
 
