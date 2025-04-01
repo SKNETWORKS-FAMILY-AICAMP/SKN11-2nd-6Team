@@ -62,6 +62,11 @@
 3. `courses.csv`: 개설된 각 강의(course)에 대한 정보 <br/>
 4. `studentInfo.csv` : 각 학생의 인구통계학적 정보와 수강 결과 <br/>
 5. `studentRegistration.csv`: 학생들의 수강 신청 및 이탈(취소) 정보 <br/>
+   
+    ↪️ **`merged_data.csv`** : 분석과 모델링에 필요한 주요 정보를 포함한 최종 분석용 데이터셋.  <br/>
+   -5개의 csv 파일을 `학생 ID(id_student)`, `과목 코드(code_module)`, `학기(code_presentation)`를 기준으로 병합 <br/>
+   ![image](https://github.com/user-attachments/assets/4628b792-cfee-41a1-8ace-aa20a437b605)
+
 
 ## 2. 🧹 데이터 전처리(Data Preprocessing)
    Feature Importance 시각화 추가하기
