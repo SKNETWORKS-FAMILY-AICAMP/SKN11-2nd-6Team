@@ -143,11 +143,8 @@
 - weighted_score :	난이도 대비 성취도 → "B과제는 고난이도지만 고가중점수 → Distinct 학생" 
 
 
-## 4. StandardScaler 적용 (정규화) 추가하기
-##### 데이터 구조 확인
-- 데이터 프레임 정보(인코딩 후)
-![image](https://github.com/user-attachments/assets/86b50ff7-8f4a-41aa-87f2-c1e189d900e5)
-
+## 4. StandardScaler 적용 (정규화)
+- 수치형 변수에 대해 표준화 또는 정규화 적용
 
 ---
 
